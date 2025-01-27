@@ -1,0 +1,66 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700;800;900&display=swap");
+
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
+#app {
+  font-family: "Montserrat", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+
+.default-colors {
+  @apply bg-slate-100 text-slate-900 dark:bg-slate-900 dark:text-neutral-100;
+}
+
+.row-center {
+  @apply flex items-center justify-center;
+}
+
+.col-center {
+  @apply flex flex-col items-center justify-center;
+}
+
+.default-hover {
+  @apply hover:scale-105 duration-150
+}
+
+.shiny {
+  will-change: filter;
+  transition: filter 300ms;
+}
+
+:root {
+  --drop-shadow-size: 2em;
+}
+
+.shiny:hover {
+  filter: drop-shadow(0 0 var(--drop-shadow-size) #86efac);
+}
+
+::-webkit-scrollbar {
+  /* width: .1rem;  */
+  @apply w-1 h-1;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-100 dark:bg-slate-700
+  /* background-color: #f0f0f0; 
+  border-top-right-radius: .25rem;
+  border-bottom-right-radius: .25rem; */;
+}
+
+::-webkit-scrollbar-horizontal {
+  @apply w-1;
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+  @apply bg-slate-100 dark:bg-slate-700;
+}
