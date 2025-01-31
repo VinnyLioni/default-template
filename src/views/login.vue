@@ -21,7 +21,7 @@ function go_home() {
 <template>
   <div class="default-colors w-full h-full p-2 row-center transition-colors">
     <div
-      class="w-7/12 bg-neutral-100 dark:bg-slate-100 h-full relative hidden sm:flex p-10 rounded overflow-hidden shadow"
+      class="w-7/12 bg-gray-100 dark:bg-neutral-100 h-full relative hidden sm:flex p-10 rounded overflow-hidden shadow"
     >
       <img :src="`/${config.splash}.svg`" alt="" class="z-30" />
       <img
@@ -37,15 +37,15 @@ function go_home() {
       <Transition name="page-slide" mode="out-in">
         <div class="w-full flex flex-col items-center justify-center space-y-6">
           <div
-            class="text-slate-600 dark:text-slate-100 sm:text-xl 2xl:text-3xl text-xl font-bold"
+            class="text-gray-600 dark:text-neutral-100 sm:text-xl 2xl:text-3xl text-xl font-bold"
           >
             <span>Bem vindo</span>
           </div>
           <GoogleButton />
           <div class="flex flex-row items-center space-x-2">
-            <div class="content-[''] w-32 h-[1px] bg-slate-500 rounded"></div>
-            <span class="text-slate-500 text-xs">Ou</span>
-            <div class="content-[''] w-32 h-[1px] bg-slate-500"></div>
+            <div class="content-[''] w-32 h-[1px] bg-gray-500 rounded"></div>
+            <span class="text-gray-500 text-xs">Ou</span>
+            <div class="content-[''] w-32 h-[1px] bg-gray-500"></div>
           </div>
           <LoginForm @login="go_home" />
         </div>
@@ -54,7 +54,7 @@ function go_home() {
           v-else
         >
           <div
-            class="text-slate-600 dark:text-slate-100 sm:text-xl 2xl:text-3xl text-xl font-bold"
+            class="text-gray-600 dark:text-gray-100 sm:text-xl 2xl:text-3xl text-xl font-bold"
           >
             <div class="flex flex-col">
               <span

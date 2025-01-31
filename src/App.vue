@@ -4,7 +4,7 @@ import SetDark from "./components/layout/SetDark.vue";
 
 <template>
   <div
-    class="h-screen w-screen bg-neutral-200 dark:bg-slate-800 relative duration-200 ease-in-out"
+    class="h-screen w-screen bg-neutral-200 dark:bg-gray-800 relative duration-200 ease-in-out"
   >
     <SetDark />
     <RouterView v-slot="{ Component }" class="">

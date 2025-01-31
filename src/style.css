@@ -1,12 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700;800;900&display=swap");
 
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @variant dark (&:where(.dark, .dark *));
-
-/* @tailwind base;
-@tailwind components;
-@tailwind utilities; */
 
 #app {
   font-family: "Montserrat", sans-serif;
@@ -17,7 +15,11 @@
 }
 
 .default-colors {
-  @apply bg-slate-100 text-slate-900 dark:bg-slate-900 dark:text-neutral-100;
+  @apply bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-neutral-100;
+}
+
+.darker-colors {
+  @apply bg-neutral-200 dark:bg-gray-950;
 }
 
 .row-center {
@@ -29,7 +31,11 @@
 }
 
 .default-hover {
-  @apply hover:scale-105 duration-150
+  @apply hover:scale-105 duration-150;
+}
+
+.default-text {
+  @apply dark:text-gray-100 text-gray-800;
 }
 
 .shiny {
@@ -46,15 +52,11 @@
 }
 
 ::-webkit-scrollbar {
-  /* width: .1rem;  */
   @apply w-1 h-1;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-slate-100 dark:bg-slate-700
-  /* background-color: #f0f0f0; 
-  border-top-right-radius: .25rem;
-  border-bottom-right-radius: .25rem; */;
+  @apply bg-gray-100 dark:bg-gray-700;
 }
 
 ::-webkit-scrollbar-horizontal {
@@ -62,5 +64,5 @@
 }
 
 ::-webkit-scrollbar-thumb:horizontal {
-  @apply bg-slate-100 dark:bg-slate-700;
+  @apply bg-gray-100 dark:bg-gray-700;
 }

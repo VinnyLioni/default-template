@@ -10,15 +10,15 @@ const appStore = useAppStore();
     @click="appStore.sidebar_control()"
   >
     <div
-      class="content-[''] w-8 h-1 rounded-md bg-slate-500 dark:bg-green-300 duration-200 ease-in openBar transition-all"
+      class="content-[''] w-8 h-1 rounded-md bg-gray-500 dark:bg-green-300 duration-200 ease-in openBar transition-all"
       :class="appStore.sideBar ? ' rotate-6' : ''"
     ></div>
     <div
-      class="content-[''] w-8 h-1 rounded-md bg-slate-500 dark:bg-green-300 duration-200 ease-in openBar transition-all"
+      class="content-[''] w-8 h-1 rounded-md bg-gray-500 dark:bg-green-300 duration-200 ease-in openBar transition-all"
       :class="appStore.sideBar ? '' : ''"
     ></div>
     <div
-      class="content-[''] w-8 h-1 rounded-md bg-slate-500 dark:bg-green-300 duration-200 ease-in openBar transition-all"
+      class="content-[''] w-8 h-1 rounded-md bg-gray-500 dark:bg-green-300 duration-200 ease-in openBar transition-all"
       :class="appStore.sideBar ? ' -rotate-6' : ''"
     ></div>
   </button>

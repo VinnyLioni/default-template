@@ -33,16 +33,16 @@ function login() {
     <authInput title="E-mail" type="email" v-model="form.email" />
     <authInput title="Senha" type="password" v-model="form.password" />
     <div class="flex flex-col space-y-4">
-      <span class="text-slate-500 text-sm sm:text-xs 2xl:text-sm"
+      <span class="text-gray-500 text-sm sm:text-xs 2xl:text-sm"
         >Esqueceu a Senha?</span
       >
       <button
-        class="bg-green-500 text-slate-100 py-2 sm:py-1 rounded-xs shadow default-hover cursor-pointer"
+        class="bg-green-500 text-gray-100 py-2 sm:py-1 rounded-xs shadow default-hover cursor-pointer"
         type="submit"
       >
         <span class="text-sm sm:text-xs 2xl:text-sm">Entrar</span>
       </button>
-      <span class="text-slate-500 text-sm sm:text-xs 2xl:text-sm"
+      <span class="text-gray-500 text-sm sm:text-xs 2xl:text-sm"
         >Não possui conta? Cadastre-se aqui</span
       >
     </div>

@@ -12,16 +12,16 @@ const config = appConfig();
     </div>
     <div class="flex flex-col items-start justify-center">
       <span
-        class="text-slate-800 dark:text-slate-100 capitalize text-3xl sm:text-5xl tracking-tighter font-bold flex flex-row"
+        class="text-gray-800 dark:text-gray-100 capitalize text-3xl sm:text-5xl tracking-tighter font-bold flex flex-row"
         >{{ config.appTitle }}
         <p
-          class="dark:text-green-300 text-slate-500 capitalize tracking-tighter font-bold"
+          class="dark:text-green-300 text-gray-500 capitalize tracking-tighter font-bold"
         >
           {{ config.appDescriptor }}
         </p></span
       >
       <span
-        class="text-slate-800 dark:text-slate-100 capitalize text-[0.7rem] sm:text-[0.8rem] sm:text-lg tracking-tighter ml-1 -mt-1 font-medium"
+        class="text-gray-800 dark:text-gray-100 capitalize text-[0.7rem] sm:text-[0.8rem] sm:text-lg tracking-tighter ml-1 -mt-1 font-medium"
         >{{ config.appPhrase }}</span
       >
     </div>

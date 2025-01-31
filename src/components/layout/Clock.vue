@@ -26,7 +26,7 @@ onMounted(() => {
 
 <template>
   <span
-    class="text-xs w-10 dark:text-slate-400 text-slate-600 font-semibold tracking-tighter"
+    class="text-xs w-10 dark:text-gray-400 text-gray-600 font-semibold tracking-tighter"
     >{{ time }}</span
   >
 </template>
