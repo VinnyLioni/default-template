@@ -1,18 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700;800;900&display=swap')
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700;800;900&display=swap")
 layer(base);
 
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @custom-variant dark (&:is(.dark *));
 
-/*
-  The default border color has changed to `currentColor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
 @layer base {
   *,
   ::after,
@@ -30,7 +22,7 @@ layer(base);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  /* color: #2c3e50; */
 }
 
 .default-colors {
@@ -39,6 +31,10 @@ layer(base);
 
 .darker-colors {
   @apply bg-neutral-200 dark:bg-gray-950;
+}
+
+.default-shadow {
+  @apply shadow-md shadow-gray-200 dark:shadow-gray-950;
 }
 
 .row-center {
@@ -64,6 +60,7 @@ layer(base);
 
 :root {
   --drop-shadow-size: 2em;
+  @apply bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-neutral-100;
 }
 
 .shiny:hover {
@@ -71,17 +68,24 @@ layer(base);
 }
 
 ::-webkit-scrollbar {
-  @apply w-1 h-1;
-}
-
-::-webkit-scrollbar-thumb {
-  @apply bg-gray-100 dark:bg-gray-700;
-}
-
-::-webkit-scrollbar-horizontal {
   @apply w-1;
 }
 
-::-webkit-scrollbar-thumb:horizontal {
-  @apply bg-gray-100 dark:bg-gray-700;
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-700;
+}
+
+.router-slide-enter-active,
+.router-slide-leave-active {
+  transition: 300ms ease all;
+}
+
+.router-slide-enter-from,
+.router-slide-leave-to {
+  opacity: 0;
+  transform: translateX(-10px);
 }

@@ -30,12 +30,20 @@ onMounted(() => {
 <template>
   <div class="flex">
     <SideBar />
-    <div class="h-full w-full flex-col sm:ml-16 p-2 justify-start items-start relative">
+    <div
+      class="h-full w-full flex-col sm:ml-16 p-2 justify-start items-start relative"
+    >
       <MainTitle />
       <div class="ml-auto p-2 absolute right-2 top-2">
         <BarsButton />
       </div>
-      <RouterView />
+      <div class="mt-[20%] sm:mt-[7.5%] 2xl:mt-[5%]">
+        <RouterView v-slot="{ Component }" class="">
+          <Transition name="router-slide" mode="out-in">
+            <component :is="Component"></component>
+          </Transition>
+        </RouterView>
+      </div>
     </div>
   </div>
 </template>

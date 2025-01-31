@@ -64,7 +64,7 @@ onMounted(() => {
   >
     <aside
       id="sidebar"
-      class="h-full bg-neutral-100 dark:bg-gray-900 shadow-sm text-gray-900 dark:text-gray-100 fixed top-0 transition-all duration-200 ease-in flex flex-col"
+      class="h-full bg-white dark:bg-gray-800 shadow-sm text-gray-900 dark:text-gray-100 fixed top-0 transition-all duration-200 ease-in flex flex-col"
       :class="appStore.sideBar ? 'sm:w-96 w-10/12' : 'sm:w-14 w-0'"
     >
       <transition name="fade">

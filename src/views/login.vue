@@ -27,7 +27,7 @@ function go_home() {
       <img
         :src="`/${config.background}.svg`"
         alt=""
-        class="z-10 absolute inset-0 w-full h-full object-cover -scale-x-1"
+        class="z-10 absolute inset-0 w-full h-full object-cover"
       />
     </div>
     <div

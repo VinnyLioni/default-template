@@ -3,9 +3,11 @@ import Clock from "../components/layout/Clock.vue";
 import { appConfig } from "../api/config";
 import { ref } from "vue";
 import { testData } from "../api/test";
+import { useAppController } from "../controllers/appController";
 
 const config = appConfig();
-const test = testData()
+const test = testData();
+const appController = useAppController();
 const currentDate = ref(new Date());
 
 const formattedDate = currentDate.value.toLocaleDateString("pt-BR", {
@@ -16,7 +18,7 @@ const formattedDate = currentDate.value.toLocaleDateString("pt-BR", {
 </script>
 
 <template>
-  <div class="w-full h-full flex flex-col items-start px-3 my-2">
+  <div class="flex flex-col items-start px-3 my-2">
     <span class="-tracking-widest font-bold text-xl default-text"
       >Olá, {{ config.username }}</span
     >
@@ -27,9 +29,22 @@ const formattedDate = currentDate.value.toLocaleDateString("pt-BR", {
       >
       <Clock />
     </div>
-    <div class="default-text h-full w-full row-center">
-      <Button label="Teste"/>
-      <DataTable :value="test.test" class="w-full m-4">
+    <div class="default-text w-full">
+      <Button label="Teste" />
+      <SelectButton
+        v-model="appController.tableSize"
+        :options="appController.sizeOptions"
+        option-label="label"
+        data-key="label"
+      />
+      <DataTable
+        :size="appController.tableSize.value"
+        :value="test.test"
+        class="w-[95%] rounded-lg default-shadow"
+        paginator
+        :rows="10"
+        :rows-per-page-options="[5, 10, 15]"
+      >
         <Column field="id" header="Code"></Column>
         <Column field="name" header="Name"></Column>
         <Column field="category" header="Category"></Column>

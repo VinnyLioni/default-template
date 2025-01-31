@@ -3,9 +3,7 @@ import SetDark from "./components/layout/SetDark.vue";
 </script>
 
 <template>
-  <div
-    class="h-screen w-screen bg-neutral-200 dark:bg-gray-800 relative duration-200 ease-in-out"
-  >
+  <div>
     <SetDark />
     <RouterView v-slot="{ Component }" class="">
       <Transition name="router-slide" mode="out-in">

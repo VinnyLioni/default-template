@@ -12,8 +12,13 @@ import Aura from "@primevue/themes/aura";
 import Button from "primevue/button";
 import DataTable from "primevue/datatable";
 import Column from "primevue/column";
+import SelectButton from "primevue/selectbutton";
+import Checkbox from "primevue/checkbox";
 import "primeicons/primeicons.css";
+
+// Prime-vue customization
 import { locale } from "./api/primevue-locale-dictionary";
+import GataTheme from "../src/assets/theme.ts";
 
 // Crie a instância do Pinia
 const pinia: any = createPinia();
@@ -24,7 +29,8 @@ const app = createApp(App);
 app.use(PrimeVue, {
   locale,
   theme: {
-    preset: Aura,
+    // preset: Aura,
+    preset: GataTheme,
     options: {
       prefix: "p",
       darkModeSelector: ".dark",
@@ -37,6 +43,8 @@ app.use(PrimeVue, {
 app.component("Button", Button);
 app.component("DataTable", DataTable);
 app.component("Column", Column);
+app.component("SelectButton", SelectButton);
+app.component("Checkbox", Checkbox);
 
 app.use(ConfirmationService);
 app.use(ToastService);
