@@ -21,13 +21,13 @@ function go_home() {
 <template>
   <div class="default-colors w-full h-full p-2 row-center transition-colors">
     <div
-      class="w-7/12 bg-gray-100 dark:bg-neutral-100 h-full relative hidden sm:flex p-10 rounded overflow-hidden shadow"
+      class="w-7/12 bg-gray-100 dark:bg-neutral-100 h-full relative hidden sm:flex p-10 rounded-sm overflow-hidden shadow-sm"
     >
       <img :src="`/${config.splash}.svg`" alt="" class="z-30" />
       <img
         :src="`/${config.background}.svg`"
         alt=""
-        class="z-10 absolute inset-0 w-full h-full object-cover -scale-x-[1]"
+        class="z-10 absolute inset-0 w-full h-full object-cover -scale-x-1"
       />
     </div>
     <div
@@ -43,7 +43,7 @@ function go_home() {
           </div>
           <GoogleButton />
           <div class="flex flex-row items-center space-x-2">
-            <div class="content-[''] w-32 h-[1px] bg-gray-500 rounded"></div>
+            <div class="content-[''] w-32 h-[1px] bg-gray-500 rounded-sm"></div>
             <span class="text-gray-500 text-xs">Ou</span>
             <div class="content-[''] w-32 h-[1px] bg-gray-500"></div>
           </div>

@@ -37,7 +37,7 @@ function login() {
         >Esqueceu a Senha?</span
       >
       <button
-        class="bg-green-500 text-gray-100 py-2 sm:py-1 rounded-xs shadow default-hover cursor-pointer"
+        class="bg-green-500 text-gray-100 py-2 sm:py-1 rounded-xs shadow-sm default-hover cursor-pointer"
         type="submit"
       >
         <span class="text-sm sm:text-xs 2xl:text-sm">Entrar</span>

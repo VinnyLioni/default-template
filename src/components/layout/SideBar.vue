@@ -64,7 +64,7 @@ onMounted(() => {
   >
     <aside
       id="sidebar"
-      class="h-full bg-neutral-100 dark:bg-gray-900 shadow text-gray-900 dark:text-gray-100 fixed top-0 transition-all duration-200 ease-in flex flex-col"
+      class="h-full bg-neutral-100 dark:bg-gray-900 shadow-sm text-gray-900 dark:text-gray-100 fixed top-0 transition-all duration-200 ease-in flex flex-col"
       :class="appStore.sideBar ? 'sm:w-96 w-10/12' : 'sm:w-14 w-0'"
     >
       <transition name="fade">
@@ -115,15 +115,15 @@ onMounted(() => {
           v-if="!appStore.sideBar"
           :class="appStore.sideBar ? '' : 'bg-transparent duration-75'"
         >
-          <div class="w-8 h-[4px] rounded bg-gray-700 dark:bg-green-300"></div>
-          <div class="w-8 h-[4px] rounded bg-gray-700 dark:bg-green-300"></div>
-          <div class="w-8 h-[4px] rounded bg-gray-700 dark:bg-green-300"></div>
+          <div class="w-8 h-[4px] rounded-sm bg-gray-700 dark:bg-green-300"></div>
+          <div class="w-8 h-[4px] rounded-sm bg-gray-700 dark:bg-green-300"></div>
+          <div class="w-8 h-[4px] rounded-sm bg-gray-700 dark:bg-green-300"></div>
         </div>
       </transition>
       <transition name="fade">
         <div class="w-full flex justify-center pt-6" v-if="appStore.sideBar">
           <div
-            class="w-10/12 h-[2px] rounded bg-neutral-400 dark:bg-gray-700"
+            class="w-10/12 h-[2px] rounded-sm bg-neutral-400 dark:bg-gray-700"
           />
         </div>
       </transition>
@@ -185,7 +185,7 @@ onMounted(() => {
               @click="changeRoute('support-index')"
             /> -->
             <!-- <div
-              class="w-full flex items-center justify-start space-x-4 hover:bg-neutral-300 dark:hover:bg-gray-700 px-4 py-3 rounded cursor-pointer duration-200 ease-in-out transition"
+              class="w-full flex items-center justify-start space-x-4 hover:bg-neutral-300 dark:hover:bg-gray-700 px-4 py-3 rounded-sm cursor-pointer duration-200 ease-in-out transition"
             >
               <div
                 class="flex flex-row items-center space-x-2"
@@ -208,7 +208,7 @@ onMounted(() => {
                     v-model="isDark"
                   />
                   <div
-                    class="relative w-11 h-6 bg-gray-600 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-neutral-300 dark:peer-focus:ring-gray-600 rounded-full peer dark:bg-gray-700 peer-checked:after:trangray-x-full rtl:peer-checked:after:-trangray-x-full peer-checked:after:border-green-300 after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-gray-100 dark:after:bg-gray-700 after:border-green-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-green-300"
+                    class="relative w-11 h-6 bg-gray-600 peer-focus:outline-hidden peer-focus:ring-4 peer-focus:ring-neutral-300 dark:peer-focus:ring-gray-600 rounded-full peer dark:bg-gray-700 peer-checked:after:trangray-x-full rtl:peer-checked:after:-trangray-x-full peer-checked:after:border-green-300 after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-gray-100 dark:after:bg-gray-700 after:border-green-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-green-300"
                   ></div>
                 </label>
               </div>
@@ -223,7 +223,7 @@ onMounted(() => {
         >
           <button
             @click="logoff"
-            class="bg-neutral-300 dark:bg-gray-700 text-gray-700 dark:text-gray-100 w-full p-2 m-2 rounded shadow font-semibold tracking-tighter text-lg hover:scale-102 duration-150 cursor-pointer"
+            class="bg-neutral-300 dark:bg-gray-700 text-gray-700 dark:text-gray-100 w-full p-2 m-2 rounded-sm shadow-sm font-semibold tracking-tighter text-lg hover:scale-102 duration-150 cursor-pointer"
           >
             <span>Sair</span>
           </button>
