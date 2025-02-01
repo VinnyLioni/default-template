@@ -29,7 +29,7 @@ const formattedDate = currentDate.value.toLocaleDateString("pt-BR", {
       >
       <Clock />
     </div>
-    <div class="default-text w-full">
+    <div class="default-text w-full flex flex-col gap-2">
       <Button label="Teste" />
       <SelectButton
         v-model="appController.tableSize"
@@ -40,7 +40,7 @@ const formattedDate = currentDate.value.toLocaleDateString("pt-BR", {
       <DataTable
         :size="appController.tableSize.value"
         :value="test.test"
-        class="w-[95%] rounded-lg default-shadow"
+        class="w-full rounded-lg default-shadow"
         paginator
         :rows="10"
         :rows-per-page-options="[5, 10, 15]"

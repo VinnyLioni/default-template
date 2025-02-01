@@ -25,6 +25,14 @@ layer(base);
   /* color: #2c3e50; */
 }
 
+.card {
+  @apply my-3 py-2 px-4 rounded-lg flex flex-col justify-center gap-4 shadow-md shadow-gray-300 dark:shadow-gray-900 bg-white dark:bg-gray-800;
+}
+
+.card-content {
+  @apply flex flex-col items-start gap-2;
+}
+
 .default-colors {
   @apply bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-neutral-100;
 }

@@ -1,29 +1,46 @@
-import { createRouter, createWebHashHistory } from "vue-router";
+import {
+  createRouter,
+  createWebHashHistory,
+  type RouteRecordRaw,
+} from "vue-router";
+import { appConfig } from "../api/config";
 
-const routes: any = [
+const config = appConfig();
+
+const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     component: () => import("../views/login.vue"),
     name: "login",
   },
   {
-    path: "/home",
+    path: "/app",
     component: () => import("../views/home.vue"),
     name: "home",
     redirect: { name: "main" },
     children: [
       {
-        path: "/home",
+        path: "home",
         component: () => import("../views/main.vue"),
         name: "main",
         meta: {
           title: "Início",
           showNav: true,
           module: "Home",
-          parent: "Home",
           name: "Home",
-          mode: "superadmin",
           icon: "pi-home",
+        },
+      },
+      {
+        path: "components",
+        component: () => import("../views/components.vue"),
+        name: "components",
+        meta: {
+          title: "Componentes",
+          showNav: config.isTemplate,
+          module: "Components",
+          name: "Components",
+          icon: "pi-star",
         },
       },
     ],

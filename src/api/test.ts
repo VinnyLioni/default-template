@@ -1,3 +1,5 @@
+import { ref } from "vue";
+
 export const testData = () => {
   const categories = [
     "loremIpsum",
@@ -46,10 +48,69 @@ export const testData = () => {
     language: "en",
   };
 
+  //forms
+  const checked = ref();
+  const date = ref(new Date());
+  const floatlabel = ref();
+  const iconfield = ref();
+  const inputgroup = ref();
+  const inputmask = ref();
+  const inputnumber = ref();
+  const inputcurrency = ref();
+  const inputpercentage = ref();
+  const inputquantity = ref();
+  const inputtext = ref();
+  const selectedcity = ref();
+  const cities = ref([
+    { name: "New York", code: "NY" },
+    { name: "Rome", code: "RM" },
+    { name: "London", code: "LDN" },
+    { name: "Istanbul", code: "IST" },
+    { name: "Paris", code: "PRS" },
+  ]);
+  const selectedcities = ref([]);
+  const password = ref();
+  const radiobutton = ref("");
+  const rating = ref<number>(0);
+  const selected = ref<string>("One-Way");
+  const select_options = ref(["Option-1", "Option-2"]);
+  const textarea = ref("");
+  const items = ref([
+    {
+      label: "Add",
+      icon: "pi pi-pencil",
+    },
+    {
+      label: "Update",
+      icon: "pi pi-refresh",
+    },
+  ]);
+
   return {
     test,
     users,
     products,
     settings,
+    checked: checked.value,
+    date: date.value,
+    floatlabel: floatlabel.value,
+    iconfield: iconfield.value,
+    inputgroup: inputgroup.value,
+    inputmask: inputmask.value,
+    inputnumber: inputnumber.value,
+    inputcurrency: inputcurrency.value,
+    inputpercentage: inputpercentage.value,
+    inputquantity: inputquantity.value,
+    inputtext: inputtext.value,
+    selectedcity: selectedcity.value,
+    cities: cities.value,
+    selectedcities,
+    password: password.value,
+    radiobutton,
+    rating: rating.value,
+    selected,
+    select_options: select_options.value,
+    textarea: textarea.value,
+    items: items.value,
   };
 };

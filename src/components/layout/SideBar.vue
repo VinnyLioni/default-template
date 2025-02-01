@@ -40,10 +40,8 @@ onMounted(() => {
     return {
       title: item.meta?.title,
       name: item.meta?.name,
-      route: item.path,
-      mode: item.meta?.mode,
+      route_name: item.name,
       showNav: item.meta?.showNav,
-      parent: item.meta?.parent,
       icon: item.meta?.icon,
     };
   });
@@ -115,9 +113,15 @@ onMounted(() => {
           v-if="!appStore.sideBar"
           :class="appStore.sideBar ? '' : 'bg-transparent duration-75'"
         >
-          <div class="w-8 h-[4px] rounded-sm bg-gray-700 dark:bg-green-300"></div>
-          <div class="w-8 h-[4px] rounded-sm bg-gray-700 dark:bg-green-300"></div>
-          <div class="w-8 h-[4px] rounded-sm bg-gray-700 dark:bg-green-300"></div>
+          <div
+            class="w-8 h-[4px] rounded-sm bg-gray-700 dark:bg-green-300"
+          ></div>
+          <div
+            class="w-8 h-[4px] rounded-sm bg-gray-700 dark:bg-green-300"
+          ></div>
+          <div
+            class="w-8 h-[4px] rounded-sm bg-gray-700 dark:bg-green-300"
+          ></div>
         </div>
       </transition>
       <transition name="fade">
@@ -135,84 +139,18 @@ onMounted(() => {
           <div
             class="w-full flex flex-col pb-8 items-center justify-start space-y-1 sm:space-y-2 sm:px-4 px-2 h-full overflow-y-auto overflow-x-hidden"
           >
-            <template v-for="(options) in filterNavs" :key="options">
+            <template v-for="options in filterNavs" :key="options">
               <SideOption
-                :title="options.name"
+                :title="options.title"
                 :icon="options.icon"
                 :custom-class="
-                  currentRoute == options.name ? 'bg-neutral-300 dark:bg-gray-700' : ''
+                  currentRoute == options.name
+                    ? 'bg-neutral-300 dark:bg-green-300/80'
+                    : ''
                 "
+                @click="changeRoute(options.route_name)"
               />
             </template>
-            <!-- <SideOption
-              icon="home"
-              title="Início"
-              @click="changeRoute('home')"
-            />
-            <SideOption
-              icon="inventory_2"
-              title="Area de Produtos"
-              @click="changeRoute('items-index')"
-            />
-            <SideOption
-              icon="handshake"
-              title="Parceiros de Negócios"
-              @click="changeRoute('partners-index')"
-            />
-            <SideOption
-              icon="shopping_cart"
-              title="Painel de Vendas"
-              @click="changeRoute('seller-index')"
-            />
-            <SideOption
-              icon="local_shipping"
-              title="Painel de Compras"
-              @click="changeRoute('buyer-index')"
-            />
-            <SideOption
-              icon="package_2"
-              title="Área de Estoque"
-              @click="changeRoute('warehouse-index')"
-            />
-            <SideOption
-              icon="monitoring"
-              title="Painel Financeiro"
-              @click="changeRoute('finance-index')"
-            />
-            <SideOption
-              icon="settings"
-              title="Ajustes"
-              @click="changeRoute('support-index')"
-            /> -->
-            <!-- <div
-              class="w-full flex items-center justify-start space-x-4 hover:bg-neutral-300 dark:hover:bg-gray-700 px-4 py-3 rounded-sm cursor-pointer duration-200 ease-in-out transition"
-            >
-              <div
-                class="flex flex-row items-center space-x-2"
-              >
-                <span
-                  class="material-symbols-rounded text-gray-700 dark:text-green-300 mr-3"
-                  v-if="!isDark"
-                  >light_mode</span
-                >
-                <span
-                  class="material-symbols-rounded text-gray-700 dark:text-green-300 mr-3"
-                  v-else
-                  >dark_mode</span
-                >
-                <label class="inline-flex items-center cursor-pointer">
-                  <input
-                    type="checkbox"
-                    value=""
-                    class="sr-only peer"
-                    v-model="isDark"
-                  />
-                  <div
-                    class="relative w-11 h-6 bg-gray-600 peer-focus:outline-hidden peer-focus:ring-4 peer-focus:ring-neutral-300 dark:peer-focus:ring-gray-600 rounded-full peer dark:bg-gray-700 peer-checked:after:trangray-x-full rtl:peer-checked:after:-trangray-x-full peer-checked:after:border-green-300 after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-gray-100 dark:after:bg-gray-700 after:border-green-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-green-300"
-                  ></div>
-                </label>
-              </div>
-            </div> -->
           </div>
         </div>
       </transition>
@@ -255,5 +193,4 @@ onMounted(() => {
 .fast-fade-leave-to {
   opacity: 0;
 }
-
 </style>
