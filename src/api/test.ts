@@ -14,16 +14,18 @@ export const testData = () => {
       id,
       name: names[Math.floor(Math.random() * names.length)],
       category: categories[Math.floor(Math.random() * categories.length)],
-      quantity: Math.floor(Math.random() * 10) + 1, // Quantidade entre 1 e 10
+      quantity: Math.floor(Math.random() * 10) + 1,
+      active: Math.random() < 0.5,
     };
   };
 
   const test = [
-    { id: 1, name: "test", category: "loremIpsum", quantity: 1 },
-    { id: 1, name: "test", category: "loremIpsum", quantity: 1 },
-    { id: 1, name: "test", category: "loremIpsum", quantity: 1 },
-    { id: 1, name: "test", category: "loremIpsum", quantity: 1 },
-    { id: 1, name: "test", category: "loremIpsum", quantity: 1 },
+    { id: 1, name: "test", category: "loremIpsum", quantity: 1, active: true },
+    { id: 1, name: "test", category: "loremIpsum", quantity: 1, active: true },
+    { id: 1, name: "test", category: "loremIpsum", quantity: 1, active: false },
+    { id: 1, name: "test", category: "loremIpsum", quantity: 1, active: true },
+    { id: 1, name: "test", category: "loremIpsum", quantity: 1, active: true },
+    { id: 1, name: "test", category: "loremIpsum", quantity: 1, active: false },
   ];
 
   // Gerando mais 15 itens dinamicamente
@@ -85,6 +87,12 @@ export const testData = () => {
       icon: "pi pi-refresh",
     },
   ]);
+  const events = ref(["2020", "2021", "2022", "2023"]);
+  const tabs = ref([
+    { title: "Title 1", content: "Content 1", value: "0" },
+    { title: "Title 2", content: "Content 2", value: "1" },
+    { title: "Title 3", content: "Content 3", value: "2" },
+  ]);
 
   return {
     test,
@@ -112,5 +120,7 @@ export const testData = () => {
     select_options: select_options.value,
     textarea: textarea.value,
     items: items.value,
+    events: events.value,
+    tabs: tabs.value,
   };
 };

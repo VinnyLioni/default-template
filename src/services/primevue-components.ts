@@ -13,13 +13,13 @@ import GataTheme from "../assets/theme";
 import Checkbox from "primevue/checkbox";
 import DatePicker from "primevue/datepicker";
 import FloatLabel from "primevue/floatlabel";
-import InputText from "primevue/inputtext";
 import IconField from "primevue/iconfield";
-import InputIcon from "primevue/inputicon";
 import InputGroup from "primevue/inputgroup";
 import InputGroupAddon from "primevue/inputgroupaddon";
+import InputIcon from "primevue/inputicon";
 import InputMask from "primevue/inputmask";
 import InputNumber from "primevue/inputnumber";
+import InputText from "primevue/inputtext";
 import Listbox from "primevue/listbox";
 import MultiSelect from "primevue/multiselect";
 import Password from "primevue/password";
@@ -33,9 +33,36 @@ import ToggleSwitch from "primevue/toggleswitch";
 // buttons
 import Button from "primevue/button";
 import SpeedDial from "primevue/speeddial";
+import SplitButton from "primevue/splitbutton";
 
+//data
 import DataTable from "primevue/datatable";
 import Column from "primevue/column";
+import Timeline from "primevue/timeline";
+
+//panel
+import Accordion from "primevue/accordion";
+import AccordionPanel from "primevue/accordionpanel";
+import AccordionHeader from "primevue/accordionheader";
+import AccordionContent from "primevue/accordioncontent";
+import Card from "primevue/card";
+import Divider from "primevue/divider";
+import Fieldset from "primevue/fieldset";
+import Panel from "primevue/panel";
+import Stepper from "primevue/stepper";
+import StepList from "primevue/steplist";
+import StepPanels from "primevue/steppanels";
+import StepItem from "primevue/stepitem";
+import Step from "primevue/step";
+import StepPanel from "primevue/steppanel";
+import Tabs from "primevue/tabs";
+import TabList from "primevue/tablist";
+import Tab from "primevue/tab";
+import TabPanels from "primevue/tabpanels";
+import TabPanel from "primevue/tabpanel";
+import Toolbar from "primevue/toolbar";
+
+import Toast from "primevue/toast";
 
 export function registerPrimeVueComponents(app: App) {
   //formm
@@ -62,9 +89,36 @@ export function registerPrimeVueComponents(app: App) {
   //buttons
   app.component("Button", Button);
   app.component("SpeedDial", SpeedDial);
+  app.component("SplitButton", SplitButton);
 
+  // data
   app.component("DataTable", DataTable);
   app.component("Column", Column);
+  app.component("Timeline", Timeline);
+
+  //panel
+  app.component("Accordion", Accordion);
+  app.component("AccordionPanel", AccordionPanel);
+  app.component("AccordionHeader", AccordionHeader);
+  app.component("AccordionContent", AccordionContent);
+  app.component("Card", Card);
+  app.component("Divider", Divider);
+  app.component("Fieldset", Fieldset);
+  app.component("Panel", Panel);
+  app.component("Stepper", Stepper);
+  app.component("StepList", StepList);
+  app.component("StepPanels", StepPanels);
+  app.component("StepItem", StepItem);
+  app.component("Step", Step);
+  app.component("StepPanel", StepPanel);
+  app.component("Tabs", Tabs);
+  app.component("TabList", TabList);
+  app.component("Tab", Tab);
+  app.component("TabPanels", TabPanels);
+  app.component("TabPanel", TabPanel);
+  app.component("Toolbar", Toolbar);
+
+  app.component("Toast", Toast);
 
   app.use(PrimeVue, {
     locale,

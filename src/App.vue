@@ -5,6 +5,7 @@ import SetDark from "./components/layout/SetDark.vue";
 <template>
   <div>
     <SetDark />
+    <Toast />
     <RouterView v-slot="{ Component }" class="">
       <Transition name="router-slide" mode="out-in">
         <KeepAlive>

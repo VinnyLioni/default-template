@@ -2,11 +2,9 @@
 import Clock from "../components/layout/Clock.vue";
 import { appConfig } from "../api/config";
 import { ref } from "vue";
-import { testData } from "../api/test";
 import { useAppController } from "../controllers/appController";
 
 const config = appConfig();
-const test = testData();
 const appController = useAppController();
 const currentDate = ref(new Date());
 
@@ -37,19 +35,6 @@ const formattedDate = currentDate.value.toLocaleDateString("pt-BR", {
         option-label="label"
         data-key="label"
       />
-      <DataTable
-        :size="appController.tableSize.value"
-        :value="test.test"
-        class="w-full rounded-lg default-shadow"
-        paginator
-        :rows="10"
-        :rows-per-page-options="[5, 10, 15]"
-      >
-        <Column field="id" header="Code"></Column>
-        <Column field="name" header="Name"></Column>
-        <Column field="category" header="Category"></Column>
-        <Column field="quantity" header="Quantity"></Column>
-      </DataTable>
     </div>
   </div>
 </template>
