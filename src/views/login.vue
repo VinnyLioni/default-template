@@ -19,7 +19,7 @@ function go_home() {
 </script>
 
 <template>
-  <div class="default-colors w-full h-full p-2 row-center transition-colors">
+  <div class="default-colors w-screen h-screen p-2 row-center transition-colors">
     <div
       class="w-7/12 bg-gray-100 dark:bg-neutral-100 h-full relative hidden sm:flex p-10 rounded-sm overflow-hidden shadow-sm"
     >

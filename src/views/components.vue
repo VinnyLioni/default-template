@@ -3,10 +3,14 @@ import PageTitle from "../components/layout/PageTitle.vue";
 
 import { testData } from "../api/test";
 import { FloatLabel } from "primevue";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import { FilterMatchMode } from "@primevue/core";
 import { useToast } from "primevue/usetoast";
+import { useConfirm } from "primevue/useconfirm";
+
 const toast = useToast();
+const confirm = useConfirm();
+
 const filters = ref({
   global: { value: null, matchMode: FilterMatchMode.CONTAINS },
   name: { value: null, matchMode: FilterMatchMode.STARTS_WITH },
@@ -76,7 +80,578 @@ function splitsave() {
   });
 }
 
+function confirm1() {
+  confirm.require({
+    message: "Are you sure you want to proceed?",
+    header: "Confirmation",
+    icon: "pi pi-exclamation-triangle",
+    rejectProps: {
+      label: "Cancel",
+      severity: "secondary",
+      outlined: true,
+    },
+    acceptProps: {
+      label: "Save",
+    },
+    accept: () => {
+      toast.add({
+        severity: "info",
+        summary: "Confirmed",
+        detail: "You have accepted",
+        life: 3000,
+      });
+    },
+    reject: () => {
+      toast.add({
+        severity: "error",
+        summary: "Rejected",
+        detail: "You have rejected",
+        life: 3000,
+      });
+    },
+  });
+}
+
+function confirm2() {
+  confirm.require({
+    message: "Do you want to delete this record?",
+    header: "Danger Zone",
+    icon: "pi pi-info-circle",
+    rejectLabel: "Cancel",
+    rejectProps: {
+      label: "Cancel",
+      severity: "secondary",
+      outlined: true,
+    },
+    acceptProps: {
+      label: "Delete",
+      severity: "danger",
+    },
+    accept: () => {
+      toast.add({
+        severity: "info",
+        summary: "Confirmed",
+        detail: "Record deleted",
+        life: 3000,
+      });
+    },
+    reject: () => {
+      toast.add({
+        severity: "error",
+        summary: "Rejected",
+        detail: "You have rejected",
+        life: 3000,
+      });
+    },
+  });
+}
+
+function popup1(event: any) {
+  confirm.require({
+    target: event.currentTarget,
+    message: "Are you sure you want to proceed?",
+    icon: "pi pi-exclamation-triangle",
+    rejectProps: {
+      label: "Cancel",
+      severity: "secondary",
+      outlined: true,
+    },
+    acceptProps: {
+      label: "Save",
+    },
+    accept: () => {
+      toast.add({
+        severity: "info",
+        summary: "Confirmed",
+        detail: "You have accepted",
+        life: 3000,
+      });
+    },
+    reject: () => {
+      toast.add({
+        severity: "error",
+        summary: "Rejected",
+        detail: "You have rejected",
+        life: 3000,
+      });
+    },
+  });
+}
+
+function popup2(event: any) {
+  confirm.require({
+    target: event.currentTarget,
+    message: "Do you want to delete this record?",
+    icon: "pi pi-info-circle",
+    rejectProps: {
+      label: "Cancel",
+      severity: "secondary",
+      outlined: true,
+    },
+    acceptProps: {
+      label: "Delete",
+      severity: "danger",
+    },
+    accept: () => {
+      toast.add({
+        severity: "info",
+        summary: "Confirmed",
+        detail: "Record deleted",
+        life: 3000,
+      });
+    },
+    reject: () => {
+      toast.add({
+        severity: "error",
+        summary: "Rejected",
+        detail: "You have rejected",
+        life: 3000,
+      });
+    },
+  });
+}
+
+const visible = ref(false);
+const drawer = ref(false);
+
+const op = ref();
+const members = ref([
+  {
+    name: "Amy Elsner",
+    image: "amyelsner.png",
+    email: "amy@email.com",
+    role: "Owner",
+  },
+  {
+    name: "Bernardo Dominic",
+    image: "bernardodominic.png",
+    email: "bernardo@email.com",
+    role: "Editor",
+  },
+  {
+    name: "Ioni Bowcher",
+    image: "ionibowcher.png",
+    email: "ioni@email.com",
+    role: "Viewer",
+  },
+]);
+
+function toggle(event: any) {
+  op.value.toggle(event);
+}
+
+function onAdvancedUpload() {
+  toast.add({
+    severity: "info",
+    summary: "Success",
+    detail: "File Uploaded",
+    life: 3000,
+  });
+}
+
+//breadcrumb
+const home = ref({
+  icon: "pi pi-home",
+});
+const items = ref([
+  { label: "Electronics" },
+  { label: "Computer" },
+  { label: "Accessories" },
+  { label: "Keyboard" },
+  { label: "Wireless" },
+]);
+
+//contextmenu
+const contextmenu = ref([
+  {
+    label: "Traduzir",
+    icon: "pi pi-language",
+  },
+  {
+    label: "Falar",
+    icon: "pi pi-volume-up",
+    items: [
+      {
+        label: "Iniciar",
+        icon: "pi pi-caret-right",
+      },
+      {
+        label: "Parar",
+        icon: "pi pi-pause",
+      },
+    ],
+  },
+  {
+    separator: true,
+  },
+  {
+    label: "Imprimir",
+    icon: "pi pi-print",
+  },
+]);
+const menu = ref();
+function onImageRightClick(event: any) {
+  menu.value.show(event);
+}
+
+//menu
+const menuitems = ref([
+  {
+    label: "Documents",
+    items: [
+      {
+        label: "New",
+        icon: "pi pi-plus",
+      },
+      {
+        label: "Search",
+        icon: "pi pi-search",
+      },
+    ],
+  },
+  {
+    label: "Profile",
+    items: [
+      {
+        label: "Settings",
+        icon: "pi pi-cog",
+      },
+      {
+        label: "Logout",
+        icon: "pi pi-sign-out",
+      },
+    ],
+  },
+]);
+const menupopup = ref();
+function togglemenu(event: any) {
+  menupopup.value.toggle(event);
+}
+const menubar = ref([
+  {
+    label: "Home",
+    icon: "pi pi-home",
+  },
+  {
+    label: "Features",
+    icon: "pi pi-star",
+  },
+  {
+    label: "Projects",
+    icon: "pi pi-search",
+    items: [
+      {
+        label: "Components",
+        icon: "pi pi-bolt",
+      },
+      {
+        label: "Blocks",
+        icon: "pi pi-server",
+      },
+      {
+        label: "UI Kit",
+        icon: "pi pi-pencil",
+      },
+      {
+        label: "Templates",
+        icon: "pi pi-palette",
+        items: [
+          {
+            label: "Apollo",
+            icon: "pi pi-palette",
+          },
+          {
+            label: "Ultima",
+            icon: "pi pi-palette",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    label: "Contact",
+    icon: "pi pi-envelope",
+  },
+]);
+const megamenu = ref<any>([
+  {
+    label: "Furniture",
+    icon: "pi pi-box",
+    items: [
+      [
+        {
+          label: "Living Room",
+          items: [
+            { label: "Accessories" },
+            { label: "Armchair" },
+            { label: "Coffee Table" },
+            { label: "Couch" },
+            { label: "TV Stand" },
+          ],
+        },
+      ],
+      [
+        {
+          label: "Kitchen",
+          items: [
+            { label: "Bar stool" },
+            { label: "Chair" },
+            { label: "Table" },
+          ],
+        },
+        {
+          label: "Bathroom",
+          items: [{ label: "Accessories" }],
+        },
+      ],
+      [
+        {
+          label: "Bedroom",
+          items: [
+            { label: "Bed" },
+            { label: "Chaise lounge" },
+            { label: "Cupboard" },
+            { label: "Dresser" },
+            { label: "Wardrobe" },
+          ],
+        },
+      ],
+      [
+        {
+          label: "Office",
+          items: [
+            { label: "Bookcase" },
+            { label: "Cabinet" },
+            { label: "Chair" },
+            { label: "Desk" },
+            { label: "Executive Chair" },
+          ],
+        },
+      ],
+    ],
+  },
+  {
+    label: "Electronics",
+    icon: "pi pi-mobile",
+    items: [
+      [
+        {
+          label: "Computer",
+          items: [
+            { label: "Monitor" },
+            { label: "Mouse" },
+            { label: "Notebook" },
+            { label: "Keyboard" },
+            { label: "Printer" },
+            { label: "Storage" },
+          ],
+        },
+      ],
+      [
+        {
+          label: "Home Theater",
+          items: [
+            { label: "Projector" },
+            { label: "Speakers" },
+            { label: "TVs" },
+          ],
+        },
+      ],
+      [
+        {
+          label: "Gaming",
+          items: [
+            { label: "Accessories" },
+            { label: "Console" },
+            { label: "PC" },
+            { label: "Video Games" },
+          ],
+        },
+      ],
+      [
+        {
+          label: "Appliances",
+          items: [
+            { label: "Coffee Machine" },
+            { label: "Fridge" },
+            { label: "Oven" },
+            { label: "Vaccum Cleaner" },
+            { label: "Washing Machine" },
+          ],
+        },
+      ],
+    ],
+  },
+  {
+    label: "Sports",
+    icon: "pi pi-clock",
+    items: [
+      [
+        {
+          label: "Football",
+          items: [
+            { label: "Kits" },
+            { label: "Shoes" },
+            { label: "Shorts" },
+            { label: "Training" },
+          ],
+        },
+      ],
+      [
+        {
+          label: "Running",
+          items: [
+            { label: "Accessories" },
+            { label: "Shoes" },
+            { label: "T-Shirts" },
+            { label: "Shorts" },
+          ],
+        },
+      ],
+      [
+        {
+          label: "Swimming",
+          items: [
+            { label: "Kickboard" },
+            { label: "Nose Clip" },
+            { label: "Swimsuits" },
+            { label: "Paddles" },
+          ],
+        },
+      ],
+      [
+        {
+          label: "Tennis",
+          items: [
+            { label: "Balls" },
+            { label: "Rackets" },
+            { label: "Shoes" },
+            { label: "Training" },
+          ],
+        },
+      ],
+    ],
+  },
+]);
+
+//chart
+const chartData = ref();
+const chartOptions = ref();
+function setChartData() {
+  const documentStyle = getComputedStyle(document.documentElement);
+
+  return {
+    labels: ["January", "February", "March", "April", "May", "June", "July"],
+    datasets: [
+      {
+        label: "My First dataset",
+        backgroundColor: documentStyle.getPropertyValue("--p-cyan-500"),
+        borderColor: documentStyle.getPropertyValue("--p-cyan-500"),
+        data: [65, 59, 80, 81, 56, 55, 40],
+      },
+      {
+        label: "My Second dataset",
+        backgroundColor: documentStyle.getPropertyValue("--p-gray-500"),
+        borderColor: documentStyle.getPropertyValue("--p-gray-500"),
+        data: [28, 48, 40, 19, 86, 27, 90],
+      },
+    ],
+  };
+}
+function setChartOptions() {
+  const documentStyle = getComputedStyle(document.documentElement);
+  const textColor = documentStyle.getPropertyValue("--p-text-color");
+  const textColorSecondary = documentStyle.getPropertyValue(
+    "--p-text-muted-color"
+  );
+  const surfaceBorder = documentStyle.getPropertyValue(
+    "--p-content-border-color"
+  );
+
+  return {
+    maintainAspectRatio: false,
+    aspectRatio: 0.8,
+    plugins: {
+      legend: {
+        labels: {
+          color: textColor,
+        },
+      },
+    },
+    scales: {
+      x: {
+        ticks: {
+          color: textColorSecondary,
+          font: {
+            weight: 500,
+          },
+        },
+        grid: {
+          display: false,
+          drawBorder: false,
+        },
+      },
+      y: {
+        ticks: {
+          color: textColorSecondary,
+        },
+        grid: {
+          color: surfaceBorder,
+          drawBorder: false,
+        },
+      },
+    },
+  };
+}
+const doughnutData = ref();
+const doughnutOptions = ref();
+function setDoughnutData() {
+  const documentStyle = getComputedStyle(document.body);
+
+  return {
+    labels: ["A", "B", "C"],
+    datasets: [
+      {
+        data: [540, 325, 702],
+        backgroundColor: [
+          documentStyle.getPropertyValue("--p-cyan-500"),
+          documentStyle.getPropertyValue("--p-orange-500"),
+          documentStyle.getPropertyValue("--p-gray-500"),
+        ],
+        hoverBackgroundColor: [
+          documentStyle.getPropertyValue("--p-cyan-400"),
+          documentStyle.getPropertyValue("--p-orange-400"),
+          documentStyle.getPropertyValue("--p-gray-400"),
+        ],
+      },
+    ],
+  };
+}
+
+function setDoughnutOptions() {
+  const documentStyle = getComputedStyle(document.documentElement);
+  const textColor = documentStyle.getPropertyValue("--p-text-color");
+
+  return {
+    plugins: {
+      legend: {
+        labels: {
+          cutout: "60%",
+          color: textColor,
+        },
+      },
+    },
+  };
+}
+
 const test = testData();
+
+onMounted(() => {
+  chartData.value = setChartData();
+  chartOptions.value = setChartOptions();
+  doughnutData.value = setDoughnutData();
+  doughnutOptions.value = setDoughnutOptions();
+});
 </script>
 
 <template>
@@ -792,21 +1367,295 @@ const test = testData();
             </Toolbar>
           </div>
         </div>
+      </div>
+    </div>
+
+    <div class="flex flex-col items-start my-6">
+      <div class="text-xl font-semibold tracking-tighter">Overlay</div>
+      <div class="flex flex-row flex-wrap gap-x-4 gap-y-0">
         <div class="card">
           <div class="card-content">
-            <span class="font-semibold tracking-tighter"></span>
+            <span class="font-semibold tracking-tighter">ConfirmDialog</span>
+            <ConfirmDialog></ConfirmDialog>
+            <Button @click="confirm1()" label="Save" outlined></Button>
+            <Button
+              @click="confirm2()"
+              label="Delete"
+              severity="danger"
+              outlined
+            ></Button>
           </div>
         </div>
         <div class="card">
           <div class="card-content">
-            <span class="font-semibold tracking-tighter"></span>
+            <span class="font-semibold tracking-tighter">ConfirmPopup</span>
+            <ConfirmPopup></ConfirmPopup>
+            <div class="card flex flex-wrap gap-2 justify-center">
+              <Button @click="popup1($event)" label="Save" outlined></Button>
+              <Button
+                @click="popup2($event)"
+                label="Delete"
+                severity="danger"
+                outlined
+              ></Button>
+            </div>
           </div>
         </div>
         <div class="card">
           <div class="card-content">
-            <span class="font-semibold tracking-tighter"></span>
+            <span class="font-semibold tracking-tighter">Dialog</span>
+            <div class="card flex justify-center">
+              <Button label="Show" @click="visible = true" />
+              <Dialog
+                v-model:visible="visible"
+                modal
+                header="Edit Profile"
+                :style="{ width: '25rem' }"
+              >
+                <span class="text-surface-500 dark:text-surface-400 block mb-8"
+                  >Update your information.</span
+                >
+                <div class="flex items-center gap-4 mb-4">
+                  <label for="username" class="font-semibold w-24"
+                    >Username</label
+                  >
+                  <InputText
+                    id="username"
+                    class="flex-auto"
+                    autocomplete="off"
+                  />
+                </div>
+                <div class="flex items-center gap-4 mb-8">
+                  <label for="email" class="font-semibold w-24">Email</label>
+                  <InputText id="email" class="flex-auto" autocomplete="off" />
+                </div>
+                <div class="flex justify-end gap-2">
+                  <Button
+                    type="button"
+                    label="Cancel"
+                    severity="secondary"
+                    @click="visible = false"
+                  ></Button>
+                  <Button
+                    type="button"
+                    label="Save"
+                    @click="visible = false"
+                  ></Button>
+                </div>
+              </Dialog>
+            </div>
           </div>
         </div>
+        <div class="card">
+          <div class="card-content">
+            <span class="font-semibold tracking-tighter">Drawer</span>
+            <div class="card flex justify-center">
+              <Drawer v-model:visible="drawer" header="Drawer">
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                  laboris nisi ut aliquip ex ea commodo consequat.
+                </p>
+              </Drawer>
+              <Button icon="pi pi-arrow-right" @click="drawer = true" />
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            <span class="font-semibold tracking-tighter">Popover</span>
+            <Button
+              type="button"
+              icon="pi pi-share-alt"
+              label="Share"
+              @click="toggle"
+            />
+            <Popover ref="op">
+              <div class="flex flex-col gap-4 w-[25rem]">
+                <div>
+                  <span class="font-medium block mb-2"
+                    >Share this document</span
+                  >
+                  <InputGroup>
+                    <InputText
+                      value="https://primevue.org/12323ff26t2g243g423g234gg52hy25XADXAG3"
+                      readonly
+                      class="w-[25rem]"
+                    ></InputText>
+                    <InputGroupAddon>
+                      <i class="pi pi-copy"></i>
+                    </InputGroupAddon>
+                  </InputGroup>
+                </div>
+                <div>
+                  <span class="font-medium block mb-2">Invite Member</span>
+                  <InputGroup>
+                    <InputText disabled />
+                    <Button label="Invite" icon="pi pi-users"></Button>
+                  </InputGroup>
+                </div>
+                <div>
+                  <span class="font-medium block mb-2">Team Members</span>
+                  <ul class="list-none p-0 m-0 flex flex-col gap-4">
+                    <li
+                      v-for="member in members"
+                      :key="member.name"
+                      class="flex items-center gap-2"
+                    >
+                      <img
+                        :src="`https://primefaces.org/cdn/primevue/images/avatar/${member.image}`"
+                        style="width: 32px"
+                      />
+                      <div>
+                        <span class="font-medium">{{ member.name }}</span>
+                        <div
+                          class="text-sm text-surface-500 dark:text-surface-400"
+                        >
+                          {{ member.email }}
+                        </div>
+                      </div>
+                      <div
+                        class="flex items-center gap-2 text-surface-500 dark:text-surface-400 ml-auto text-sm"
+                      >
+                        <span>{{ member.role }}</span>
+                        <i class="pi pi-angle-down"></i>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </Popover>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            <span class="font-semibold tracking-tighter">Tooltip</span>
+            <InputText
+              v-tooltip.top="'Enter your username'"
+              type="text"
+              placeholder="Top"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-col items-start my-6">
+      <div class="text-xl font-semibold tracking-tighter">File</div>
+      <div class="flex flex-row flex-wrap gap-x-4 gap-y-0">
+        <div class="card">
+          <div class="card-content">
+            <span class="font-semibold tracking-tighter">Upload</span>
+            <FileUpload
+              name="demo[]"
+              url="/api/upload"
+              @upload="onAdvancedUpload()"
+              :multiple="true"
+              accept="image/*"
+              :maxFileSize="1000000"
+            >
+              <template #empty>
+                <span>Arraste e solte imagens aqui para fazer o upload.</span>
+              </template>
+            </FileUpload>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-col items-start my-6">
+      <div class="text-xl font-semibold tracking-tighter">Menu</div>
+      <div class="flex flex-row flex-wrap gap-x-4 gap-y-0">
+        <div class="card">
+          <div class="card-content">
+            <span class="font-semibold tracking-tighter">Breadcrumb</span>
+            <Breadcrumb :home="home" :model="items" />
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            <span class="font-semibold tracking-tighter" aria-haspopup="true"
+              >ContextMenu</span
+            >
+            <p class="mb-0" @contextmenu="onImageRightClick">
+              Clique com o botão direito para enxergar o ContextMenu.
+            </p>
+            <ContextMenu ref="menu" :model="contextmenu" />
+          </div>
+        </div>
+        <div class="card mr-[100%]">
+          <div class="card-content">
+            <span class="font-semibold tracking-tighter">Menu</span>
+            <Menu :model="menuitems" />
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            <span class="font-semibold tracking-tighter">Menu-Popup</span>
+            <div>
+              <Button
+                type="button"
+                icon="pi pi-ellipsis-v"
+                @click="togglemenu"
+                aria-haspopup="true"
+                aria-controls="overlay_menu"
+              />
+              <Menu
+                ref="menupopup"
+                id="overlay_menu"
+                :model="menuitems"
+                :popup="true"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="card mr-[100%]">
+          <div class="card-content">
+            <span class="font-semibold tracking-tighter">Menubar</span>
+            <Menubar :model="menubar" />
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            <span class="font-semibold tracking-tighter">Megamenu</span>
+            <MegaMenu :model="megamenu" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-col items-start my-6">
+      <div class="text-xl font-semibold tracking-tighter">Chart</div>
+      <div class="flex flex-row flex-wrap gap-x-4 gap-y-0">
+        <div class="card">
+          <div class="card-content">
+            <span class="font-semibold tracking-tighter">Bars</span>
+            <Chart
+              type="bar"
+              :data="chartData"
+              :options="chartOptions"
+              class="w-[1100px] h-[30rem]"
+            />
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            <span class="font-semibold tracking-tighter">Doughnut</span>
+            <Chart
+              type="doughnut"
+              :data="doughnutData"
+              :options="doughnutOptions"
+              class="h-[30rem]"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-content">
+        <span class="font-semibold tracking-tighter"></span>
       </div>
     </div>
   </div>

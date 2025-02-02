@@ -62,6 +62,27 @@ import TabPanels from "primevue/tabpanels";
 import TabPanel from "primevue/tabpanel";
 import Toolbar from "primevue/toolbar";
 
+//overlay
+import ConfirmDialog from "primevue/confirmdialog";
+import ConfirmPopup from "primevue/confirmpopup";
+import Dialog from "primevue/dialog";
+import Drawer from "primevue/drawer";
+import Popover from "primevue/popover";
+import Tooltip from "primevue/tooltip";
+
+//file
+import FileUpload from "primevue/fileupload";
+
+//menu
+import Breadcrumb from "primevue/breadcrumb";
+import ContextMenu from "primevue/contextmenu";
+import Menu from "primevue/menu";
+import Menubar from "primevue/menubar";
+import MegaMenu from "primevue/megamenu";
+
+//chart
+import Chart from "primevue/chart";
+
 import Toast from "primevue/toast";
 
 export function registerPrimeVueComponents(app: App) {
@@ -117,6 +138,27 @@ export function registerPrimeVueComponents(app: App) {
   app.component("TabPanels", TabPanels);
   app.component("TabPanel", TabPanel);
   app.component("Toolbar", Toolbar);
+
+  //overlay
+  app.component("ConfirmDialog", ConfirmDialog);
+  app.component("ConfirmPopup", ConfirmPopup);
+  app.component("Dialog", Dialog);
+  app.component("Drawer", Drawer);
+  app.component("Popover", Popover);
+  app.directive("tooltip", Tooltip);
+
+  //file
+  app.component("FileUpload", FileUpload);
+
+  //menu
+  app.component("Breadcrumb", Breadcrumb);
+  app.component("ContextMenu", ContextMenu);
+  app.component("Menu", Menu);
+  app.component("Menubar", Menubar);
+  app.component("MegaMenu", MegaMenu);
+
+  //chart
+  app.component("Chart", Chart);
 
   app.component("Toast", Toast);
 
