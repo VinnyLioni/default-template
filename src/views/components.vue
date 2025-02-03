@@ -627,7 +627,6 @@ function setDoughnutData() {
     ],
   };
 }
-
 function setDoughnutOptions() {
   const documentStyle = getComputedStyle(document.documentElement);
   const textColor = documentStyle.getPropertyValue("--p-text-color");
@@ -643,6 +642,63 @@ function setDoughnutOptions() {
     },
   };
 }
+
+//messages
+function show() {
+  toast.add({
+    severity: "info",
+    summary: "Info",
+    detail: "Message Content",
+    life: 3000,
+  });
+}
+
+//media
+function getSeverity(status: any) {
+  switch (status) {
+    case "INSTOCK":
+      return "success";
+
+    case "LOWSTOCK":
+      return "warn";
+
+    case "OUTOFSTOCK":
+      return "danger";
+
+    default:
+      return undefined;
+  }
+}
+const responsiveOptions = ref([
+  {
+    breakpoint: "1400px",
+    numVisible: 2,
+    numScroll: 1,
+  },
+  {
+    breakpoint: "1199px",
+    numVisible: 3,
+    numScroll: 1,
+  },
+  {
+    breakpoint: "767px",
+    numVisible: 2,
+    numScroll: 1,
+  },
+  {
+    breakpoint: "575px",
+    numVisible: 1,
+    numScroll: 1,
+  },
+]);
+
+//misc
+const metergroup = ref([
+  { label: "Apps", color: "#34d399", value: 16 },
+  { label: "Messages", color: "#fbbf24", value: 8 },
+  { label: "Media", color: "#60a5fa", value: 24 },
+  { label: "System", color: "#c084fc", value: 10 },
+]);
 
 const test = testData();
 
@@ -1171,14 +1227,17 @@ onMounted(() => {
             </Card>
           </div>
         </div>
-        <div class="card">
-          <div class="card-content">
-            <span class="font-semibold tracking-tighter">Divider</span>
-            <span class="text-xs">Divider</span>
-            <Divider type="solid" />
-            <span class="text-xs">Divider</span>
+        <div class="w-full">
+          <div class="card">
+            <div class="card-content">
+              <span class="font-semibold tracking-tighter">Divider</span>
+              <span class="text-xs">Divider</span>
+              <Divider type="solid" />
+              <span class="text-xs">Divider</span>
+            </div>
           </div>
         </div>
+
         <div class="card">
           <div class="card-content">
             <span class="font-semibold tracking-tighter">Fieldset</span>
@@ -1646,8 +1705,368 @@ onMounted(() => {
               type="doughnut"
               :data="doughnutData"
               :options="doughnutOptions"
-              class="h-[30rem]"
+              class="h-full"
             />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-col items-start my-6">
+      <div class="text-xl font-semibold tracking-tighter">Messages</div>
+      <div class="flex flex-row flex-wrap gap-x-4 gap-y-0">
+        <div class="card">
+          <div class="card-content">
+            <span class="font-semibold tracking-tighter">Message</span>
+            <div class="flex flex-row gap-2">
+              <Message severity="success">Success Message</Message>
+              <Message severity="info">Info Message</Message>
+              <Message severity="warn">Warn Message</Message>
+              <Message severity="error">Error Message</Message>
+              <Message severity="secondary">Secondary Message</Message>
+              <Message severity="contrast">Contrast Message</Message>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            <span class="font-semibold tracking-tighter">Toast</span>
+            <Button label="Show" @click="show()" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-col items-start my-6">
+      <div class="text-xl font-semibold tracking-tighter">Media</div>
+      <div class="flex flex-row flex-wrap gap-x-4 gap-y-0">
+        <div class="card">
+          <div class="card-content">
+            <span class="font-semibold tracking-tighter">Carousel</span>
+            <Carousel
+              :value="test.products"
+              :numVisible="3"
+              :numScroll="3"
+              :responsiveOptions="responsiveOptions"
+            >
+              <template #item="slotProps">
+                <div
+                  class="border border-surface-200 dark:border-surface-700 rounded m-2 p-4"
+                >
+                  <div class="mb-4">
+                    <div class="relative mx-auto">
+                      <img
+                        :src="
+                          'https://primefaces.org/cdn/primevue/images/product/' +
+                          slotProps.data.image
+                        "
+                        :alt="slotProps.data.name"
+                        class="w-full rounded"
+                      />
+                      <Tag
+                        :value="slotProps.data.inventoryStatus"
+                        :severity="getSeverity(slotProps.data.inventoryStatus)"
+                        class="absolute"
+                        style="left: 5px; top: 5px"
+                      />
+                    </div>
+                  </div>
+                  <div class="mb-4 font-medium">{{ slotProps.data.name }}</div>
+                  <div class="flex justify-between items-center">
+                    <div class="mt-0 font-semibold text-xl">
+                      ${{ slotProps.data.price }}
+                    </div>
+                    <span>
+                      <Button
+                        icon="pi pi-heart"
+                        severity="secondary"
+                        outlined
+                      />
+                      <Button icon="pi pi-shopping-cart" class="ml-2" />
+                    </span>
+                  </div>
+                </div>
+              </template>
+            </Carousel>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            <span class="font-semibold tracking-tighter">Image</span>
+            <Image
+              src="https://primefaces.org/cdn/primevue/images/galleria/galleria10.jpg"
+              alt="Image"
+              width="250"
+              preview
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-col items-start my-6">
+      <div class="text-xl font-semibold tracking-tighter">Misc</div>
+      <div class="flex flex-row flex-wrap gap-x-4 gap-y-0">
+        <div class="card">
+          <div class="card-content">
+            <span class="font-semibold tracking-tighter">AnimateOnScroll</span>
+            <div
+              class="default-colors p-4 rounded-lg"
+              v-animateonscroll="{
+                enterClass: 'animescroll',
+                leaveClass: 'animate-fadeout',
+              }"
+            >
+              ease-in-out
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            <span class="font-semibold tracking-tighter">Avatar</span>
+            <Avatar
+              label="V"
+              class="mr-2"
+              size="large"
+              style="background-color: #ece9fc; color: #2a1261"
+              shape="circle"
+            />
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            <span class="font-semibold tracking-tighter">Badge</span>
+            <div class="flex flex-row gap-2">
+              <Badge value="2"></Badge>
+              <Badge value="6" severity="secondary"></Badge>
+              <Badge value="8" severity="success"></Badge>
+              <Badge value="4" severity="info"></Badge>
+              <Badge value="9" severity="warn"></Badge>
+              <Badge value="3" severity="danger"></Badge>
+              <Badge value="5" severity="contrast"></Badge>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            <span class="font-semibold tracking-tighter">OverlayBadge</span>
+            <div class="flex flex-row gap-2">
+              <OverlayBadge value="2">
+                <i class="pi pi-bell" style="font-size: 2rem" />
+              </OverlayBadge>
+              <OverlayBadge value="4" severity="danger">
+                <i class="pi pi-calendar" style="font-size: 2rem" />
+              </OverlayBadge>
+              <OverlayBadge severity="danger">
+                <i class="pi pi-envelope" style="font-size: 2rem" />
+              </OverlayBadge>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            <span class="font-semibold tracking-tighter">Chip</span>
+            <div class="flex flex-row gap-2">
+              <Chip label="Apple" icon="pi pi-apple" />
+              <Chip label="Facebook" icon="pi pi-facebook" />
+              <Chip label="Google" icon="pi pi-google" />
+              <Chip label="Microsoft" icon="pi pi-microsoft" removable />
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            <span class="font-semibold tracking-tighter">FocusTrap</span>
+            <div v-focustrap class="w-full sm:w-80 flex flex-col gap-6">
+              <IconField>
+                <InputIcon>
+                  <i class="pi pi-user" />
+                </InputIcon>
+                <InputText
+                  id="input"
+                  type="text"
+                  placeholder="Name"
+                  autofocus
+                  fluid
+                />
+              </IconField>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            <span class="font-semibold tracking-tighter">Fluid</span>
+            <Fluid>
+              <span class="font-bold mb-2 block">Fluid Container</span>
+              <div class="grid grid-cols-2 gap-4">
+                <div><InputText /></div>
+                <div><InputText /></div>
+                <div class="col-span-full"><InputText /></div>
+                <div><InputText :fluid="false" placeholder="Non-Fluid" /></div>
+              </div>
+            </Fluid>
+          </div>
+        </div>
+        <div class="w-full">
+          <div class="card">
+            <div class="w-full">
+              <span class="font-semibold tracking-tighter">MeterGroup</span>
+              <div>
+                <MeterGroup :value="metergroup" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="w-full">
+          <div class="card">
+            <div class="w-full">
+              <span class="font-semibold tracking-tighter">ProgressBar</span>
+              <ProgressBar
+                mode="indeterminate"
+                style="height: 6px"
+              ></ProgressBar>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            <span class="font-semibold">ProgressSpiner</span>
+            <ProgressSpinner
+              strokeWidth="3"
+              fill="transparent"
+              animationDuration=".7s"
+              aria-label="Custom ProgressSpinner"
+            />
+          </div>
+        </div>
+        <div class="card">
+          <div>
+            <span class="font-semibold tracking-tighter">ScrollToTop</span>
+            <div class="flex justify-center">
+              <ScrollPanel style="width: 250px; height: 200px">
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Vitae et leo duis ut diam. Ultricies mi quis hendrerit dolor
+                  magna eget est lorem. Amet consectetur adipiscing elit ut. Nam
+                  libero justo laoreet sit amet. Pharetra massa massa ultricies
+                  mi quis hendrerit dolor magna. Est ultricies integer quis
+                  auctor elit sed vulputate. Consequat ac felis donec et. Tellus
+                  orci ac auctor augue mauris. Semper feugiat nibh sed pulvinar
+                  proin gravida hendrerit lectus a. Tincidunt arcu non sodales
+                  neque sodales. Metus aliquam eleifend mi in nulla posuere
+                  sollicitudin aliquam ultrices. Sodales ut etiam sit amet nisl
+                  purus. Cursus sit amet dictum sit amet. Tristique senectus et
+                  netus et malesuada fames ac turpis egestas. Et tortor
+                  consequat id porta nibh venenatis cras sed. Diam maecenas
+                  ultricies mi eget mauris. Eget egestas purus viverra accumsan
+                  in nisl nisi. Suscipit adipiscing bibendum est ultricies
+                  integer. Mattis aliquam faucibus purus in massa tempor nec.
+                </p>
+                <ScrollTop
+                  target="parent"
+                  :threshold="100"
+                  icon="pi pi-arrow-up"
+                  :buttonProps="{
+                    severity: 'contrast',
+                    raised: true,
+                    rounded: true,
+                  }"
+                />
+              </ScrollPanel>
+            </div>
+          </div>
+        </div>
+        <div class="w-full">
+          <div class="card">
+            <div class="card-content">
+              <span class="font-semibold tracking-tighter">Skeleton</span>
+              <div class="flex flex-wrap">
+                <div class="w-full xl:w-6/12 p-4">
+                  <h5>Rectangle</h5>
+                  <Skeleton class="mb-2"></Skeleton>
+                  <Skeleton width="10rem" class="mb-2"></Skeleton>
+                  <Skeleton width="5rem" class="mb-2"></Skeleton>
+                  <Skeleton height="2rem" class="mb-2"></Skeleton>
+                  <Skeleton width="10rem" height="4rem"></Skeleton>
+                </div>
+                <div class="w-full xl:w-6/12 p-4">
+                  <h5>Rounded</h5>
+                  <Skeleton class="mb-2" borderRadius="16px"></Skeleton>
+                  <Skeleton
+                    width="10rem"
+                    class="mb-2"
+                    borderRadius="16px"
+                  ></Skeleton>
+                  <Skeleton
+                    width="5rem"
+                    borderRadius="16px"
+                    class="mb-2"
+                  ></Skeleton>
+                  <Skeleton
+                    height="2rem"
+                    class="mb-2"
+                    borderRadius="16px"
+                  ></Skeleton>
+                  <Skeleton
+                    width="10rem"
+                    height="4rem"
+                    borderRadius="16px"
+                  ></Skeleton>
+                </div>
+                <div class="w-full xl:w-6/12 p-4">
+                  <h5 class="mt-4">Square</h5>
+                  <div class="flex items-end">
+                    <Skeleton size="2rem" class="mr-2"></Skeleton>
+                    <Skeleton size="3rem" class="mr-2"></Skeleton>
+                    <Skeleton size="4rem" class="mr-2"></Skeleton>
+                    <Skeleton size="5rem"></Skeleton>
+                  </div>
+                </div>
+                <div class="w-full xl:w-6/12 p-4">
+                  <h5 class="mt-4">Circle</h5>
+                  <div class="flex items-end">
+                    <Skeleton
+                      shape="circle"
+                      size="2rem"
+                      class="mr-2"
+                    ></Skeleton>
+                    <Skeleton
+                      shape="circle"
+                      size="3rem"
+                      class="mr-2"
+                    ></Skeleton>
+                    <Skeleton
+                      shape="circle"
+                      size="4rem"
+                      class="mr-2"
+                    ></Skeleton>
+                    <Skeleton shape="circle" size="5rem"></Skeleton>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-content">
+            <span class="font-semibold tracking-tighter">Ripple</span>
+            <div v-ripple class="ripple-box">Default</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            <span class="font-semibold tracking-tighter">Tag</span>
+            <div class="flex gap-2">
+              <Tag value="Primary"></Tag>
+              <Tag severity="secondary" value="Secondary"></Tag>
+              <Tag severity="success" value="Success"></Tag>
+              <Tag severity="info" value="Info"></Tag>
+              <Tag severity="warn" value="Warn"></Tag>
+              <Tag severity="danger" value="Danger"></Tag>
+              <Tag severity="contrast" value="Contrast"></Tag>
+            </div>
           </div>
         </div>
       </div>
@@ -1660,3 +2079,17 @@ onMounted(() => {
     </div>
   </div>
 </template>
+
+<style scoped>
+.ripple-box {
+  display: flex;
+  user-select: none;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+  font-weight: bold;
+  background: var(--p-content-background);
+  border: 1px solid var(--p-content-border-color);
+  border-radius: var(--p-content-border-radius);
+}
+</style>

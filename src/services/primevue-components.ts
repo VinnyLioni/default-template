@@ -83,7 +83,30 @@ import MegaMenu from "primevue/megamenu";
 //chart
 import Chart from "primevue/chart";
 
+//message
+import Message from "primevue/message";
 import Toast from "primevue/toast";
+
+//media
+import Carousel from "primevue/carousel";
+import Image from "primevue/image";
+
+//Misc
+import AnimateOnScroll from "primevue/animateonscroll";
+import Avatar from "primevue/avatar";
+import Badge from "primevue/badge";
+import OverlayBadge from "primevue/overlaybadge";
+import Chip from "primevue/chip";
+import FocusTrap from "primevue/focustrap";
+import Fluid from "primevue/fluid";
+import MeterGroup from "primevue/metergroup";
+import ProgressBar from "primevue/progressbar";
+import ProgressSpinner from "primevue/progressspinner";
+import ScrollTop from "primevue/scrolltop";
+import ScrollPanel from "primevue/scrollpanel";
+import Skeleton from "primevue/skeleton";
+import Ripple from "primevue/ripple";
+import Tag from "primevue/tag";
 
 export function registerPrimeVueComponents(app: App) {
   //formm
@@ -160,7 +183,30 @@ export function registerPrimeVueComponents(app: App) {
   //chart
   app.component("Chart", Chart);
 
+  //message
   app.component("Toast", Toast);
+  app.component("Message", Message);
+
+  //media
+  app.component("Carousel", Carousel);
+  app.component("Image", Image);
+
+  //misc
+  app.directive("animateonscroll", AnimateOnScroll);
+  app.component("Avatar", Avatar);
+  app.component("Badge", Badge);
+  app.component("OverlayBadge", OverlayBadge);
+  app.component("Chip", Chip);
+  app.directive("focustrap", FocusTrap);
+  app.component("Fluid", Fluid);
+  app.component("MeterGroup", MeterGroup);
+  app.component("ProgressBar", ProgressBar);
+  app.component("ProgressSpinner", ProgressSpinner);
+  app.component("ScrollTop", ScrollTop);
+  app.component("ScrollPanel", ScrollPanel);
+  app.component("Skeleton", Skeleton);
+  app.directive("ripple", Ripple);
+  app.component("Tag", Tag);
 
   app.use(PrimeVue, {
     locale,
@@ -172,6 +218,7 @@ export function registerPrimeVueComponents(app: App) {
         cssLayer: false,
       },
     },
+    ripple: true,
   });
 
   app.use(ConfirmationService);

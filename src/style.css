@@ -21,7 +21,7 @@ layer(base);
   font-family: "Montserrat", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  /* text-align: center; */
   /* color: #2c3e50; */
 }
 
@@ -96,4 +96,8 @@ layer(base);
 .router-slide-leave-to {
   opacity: 0;
   transform: translateX(-10px);
+}
+
+.animescroll {
+  @apply transition duration-300 ease-in-out;
 }
