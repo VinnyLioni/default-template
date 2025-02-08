@@ -34,7 +34,7 @@ onMounted(() => {
       class="h-full w-full flex-col sm:ml-16 p-2 justify-start items-start relative"
     >
       <MainTitle />
-      <div class="ml-auto p-2 absolute right-2 top-2">
+      <div class="">
         <BarsButton />
       </div>
       <div class="mt-[20%] sm:mt-[8%] 2xl:mt-[6%]">

@@ -6,7 +6,7 @@ const appStore = useAppStore();
 
 <template>
   <button
-    class="sm:hidden ml-auto space-y-2 rounded-sm openBar flex flex-col fixed top-2 right-2 z-10"
+    class="sm:hidden ml-auto space-y-2 rounded-sm openBar flex flex-col fixed top-4 right-4 z-10"
     @click="appStore.sidebar_control()"
   >
     <div

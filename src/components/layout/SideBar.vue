@@ -145,7 +145,7 @@ onMounted(() => {
                 :icon="options.icon"
                 :custom-class="
                   currentRoute == options.name
-                    ? 'bg-neutral-300 dark:bg-green-300/80'
+                    ? 'bg-neutral-300 dark:bg-green-300/80 hover:bg-neutral-400/70 hover:dark:bg-green-300/70'
                     : ''
                 "
                 @click="changeRoute(options.route_name)"
@@ -187,11 +187,14 @@ onMounted(() => {
 
 .fast-fade-enter-active,
 .fast-fade-leave-active {
-  transition: opacity 0.1s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  transition: opacity 0.1s cubic-bezier(0.455, 0.03, 0.515, 0.955),
+              transform 0.1s cubic-bezier(0.455, 0.03, 0.515, 0.955);
 }
 
 .fast-fade-enter-from,
 .fast-fade-leave-to {
   opacity: 0;
+  transform: translateY(20px); /* Move o elemento 20px para a esquerda */
+
 }
 </style>

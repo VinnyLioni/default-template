@@ -716,7 +716,7 @@ onMounted(() => {
 
     <div class="flex flex-col items-start my-6">
       <div class="text-xl font-semibold tracking-tighter">Forms</div>
-      <div class="flex flex-row flex-wrap gap-x-4 gap-y-0">
+      <div class="flex flex-col sm:flex-row flex-wrap gap-x-4 gap-y-0">
         <div class="card">
           <div class="card-content">
             <span class="font-semibold tracking-tight">Checkbox</span>
@@ -1027,7 +1027,7 @@ onMounted(() => {
 
     <div class="flex flex-col items-start my-6">
       <div class="text-xl font-semibold tracking-tighter">Buttons</div>
-      <div class="flex flex-row flex-wrap gap-x-4 gap-y-0">
+      <div class="flex flex-col sm:flex-row flex-wrap gap-x-4 gap-y-0">
         <div class="card">
           <div class="card-content">
             <span class="font-semibold tracking-tight">Button</span>
@@ -1051,7 +1051,7 @@ onMounted(() => {
 
     <div class="flex flex-col items-start my-6">
       <div class="text-xl font-semibold tracking-tighter">Data</div>
-      <div class="flex flex-row flex-wrap gap-x-4 gap-y-0">
+      <div class="flex flex-col sm:flex-row flex-wrap gap-x-4 gap-y-0">
         <div class="card w-full">
           <div class="card-content">
             <span class="font-semibold tracking-tighter">DataTable</span>
@@ -1201,7 +1201,7 @@ onMounted(() => {
 
     <div class="flex flex-col items-start my-6">
       <div class="text-xl font-semibold tracking-tighter">Panel</div>
-      <div class="flex flex-row flex-wrap gap-x-4 gap-y-0">
+      <div class="flex flex-col sm:flex-row flex-wrap gap-x-4 gap-y-0">
         <div class="card">
           <div class="card-content">
             <span class="font-semibold tracking-tighter">Accordion</span>
@@ -1439,7 +1439,7 @@ onMounted(() => {
 
     <div class="flex flex-col items-start my-6">
       <div class="text-xl font-semibold tracking-tighter">Overlay</div>
-      <div class="flex flex-row flex-wrap gap-x-4 gap-y-0">
+      <div class="flex flex-col sm:flex-row flex-wrap gap-x-4 gap-y-0">
         <div class="card">
           <div class="card-content">
             <span class="font-semibold tracking-tighter">ConfirmDialog</span>
@@ -1610,7 +1610,7 @@ onMounted(() => {
 
     <div class="flex flex-col items-start my-6">
       <div class="text-xl font-semibold tracking-tighter">File</div>
-      <div class="flex flex-row flex-wrap gap-x-4 gap-y-0">
+      <div class="flex flex-col sm:flex-row flex-wrap gap-x-4 gap-y-0">
         <div class="card">
           <div class="card-content">
             <span class="font-semibold tracking-tighter">Upload</span>
@@ -1633,7 +1633,7 @@ onMounted(() => {
 
     <div class="flex flex-col items-start my-6">
       <div class="text-xl font-semibold tracking-tighter">Menu</div>
-      <div class="flex flex-row flex-wrap gap-x-4 gap-y-0">
+      <div class="flex flex-col sm:flex-row flex-wrap gap-x-4 gap-y-0">
         <div class="card">
           <div class="card-content">
             <span class="font-semibold tracking-tighter">Breadcrumb</span>
@@ -1694,7 +1694,7 @@ onMounted(() => {
 
     <div class="flex flex-col items-start my-6">
       <div class="text-xl font-semibold tracking-tighter">Chart</div>
-      <div class="flex flex-row flex-wrap gap-x-4 gap-y-0">
+      <div class="flex flex-col sm:flex-row flex-wrap gap-x-4 gap-y-0">
         <div class="card">
           <div class="card-content">
             <span class="font-semibold tracking-tighter">Bars</span>
@@ -1702,7 +1702,7 @@ onMounted(() => {
               type="bar"
               :data="chartData"
               :options="chartOptions"
-              class="w-[1100px] h-[30rem]"
+              class="sm:w-[1100px] h-[30rem]"
             />
           </div>
         </div>
@@ -1722,7 +1722,7 @@ onMounted(() => {
 
     <div class="flex flex-col items-start my-6">
       <div class="text-xl font-semibold tracking-tighter">Messages</div>
-      <div class="flex flex-row flex-wrap gap-x-4 gap-y-0">
+      <div class="flex flex-col sm:flex-row flex-wrap gap-x-4 gap-y-0">
         <div class="card">
           <div class="card-content">
             <span class="font-semibold tracking-tighter">Message</span>
@@ -1747,7 +1747,7 @@ onMounted(() => {
 
     <div class="flex flex-col items-start my-6">
       <div class="text-xl font-semibold tracking-tighter">Media</div>
-      <div class="flex flex-row flex-wrap gap-x-4 gap-y-0">
+      <div class="flex flex-col sm:flex-row flex-wrap gap-x-4 gap-y-0">
         <div class="card">
           <div class="card-content">
             <span class="font-semibold tracking-tighter">Carousel</span>
@@ -1814,7 +1814,7 @@ onMounted(() => {
 
     <div class="flex flex-col items-start my-6">
       <div class="text-xl font-semibold tracking-tighter">Misc</div>
-      <div class="flex flex-row flex-wrap gap-x-4 gap-y-0">
+      <div class="flex flex-col sm:flex-row flex-wrap gap-x-4 gap-y-0">
         <div class="card">
           <div class="card-content">
             <span class="font-semibold tracking-tighter">AnimateOnScroll</span>
