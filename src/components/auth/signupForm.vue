@@ -27,7 +27,7 @@
     <authInput title="Confirme a Senha" type="password"/>
     <div class="flex flex-col space-y-4">
       <span class="text-gray-500 text-sm sm:text-xs 2xl:text-sm">Esqueceu a Senha?</span>
-      <button class="bg-green-500 text-gray-100 py-2 sm:py-1 rounded shadow" type="submit">
+      <button class="bg-green-500 text-gray-100 py-2 sm:py-1 rounded-sm shadow-sm" type="submit">
         <span class="text-sm sm:text-xs 2xl:text-sm">Cadastrar</span>
       </button>
       <span class="text-gray-500 text-sm sm:text-xs 2xl:text-sm" @click="appStore.changeForm()">Voltar para Login</span>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useRoute, useRouter } from "vue-router";
 import { useAppStore } from "../../store/appStore";
-import { useAuthStore } from "../../store/authStore";
+import { useAuthStore } from "../../services/auth";
 import SideOption from "./SideOption.vue";
 import { useDark, useToggle } from "@vueuse/core";
 import { computed, onMounted, ref } from "vue";
@@ -20,7 +20,7 @@ const changeRoute = (payload: string) => {
 };
 
 const logoff = async () => {
-  router.push({ name: "login" });
+  authStore.logout();
 };
 
 const optionsNav = ref<any>([]);
@@ -40,10 +40,8 @@ onMounted(() => {
     return {
       title: item.meta?.title,
       name: item.meta?.name,
-      route: item.path,
-      mode: item.meta?.mode,
+      route_name: item.name,
       showNav: item.meta?.showNav,
-      parent: item.meta?.parent,
       icon: item.meta?.icon,
     };
   });
@@ -64,7 +62,7 @@ onMounted(() => {
   >
     <aside
       id="sidebar"
-      class="h-full bg-neutral-100 dark:bg-gray-900 shadow text-gray-900 dark:text-gray-100 fixed top-0 transition-all duration-200 ease-in flex flex-col"
+      class="h-full bg-white dark:bg-gray-800 shadow-sm text-gray-900 dark:text-gray-100 fixed top-0 transition-all duration-200 ease-in flex flex-col"
       :class="appStore.sideBar ? 'sm:w-96 w-10/12' : 'sm:w-14 w-0'"
     >
       <transition name="fade">
@@ -76,7 +74,7 @@ onMounted(() => {
             class="flex flex-row justify-start items-center space-x-2 w-full"
           >
             <img
-              :src="authStore.user?.photo || '/gataticos.webp'"
+              :src="authStore.userDetail?.photoUrl || '/gataticos.webp'"
               alt=""
               class="rounded-full transition-all my-4 duration-200 ml-2 border-2 border-gray-700 dark:border-green-300 w-14 h-14"
               :class="appStore.sideBar ? 'sm:w-16 sm:h-14' : 'sm:w-10 sm:h-10'"
@@ -89,12 +87,12 @@ onMounted(() => {
                 <div
                   class="truncate transition-all sm:text-2xl duration-200 ease-in text-xl border-gray-700 dark:text-green-300 -tracking-widest"
                 >
-                  {{ authStore.user?.name || "Seja bem Vindo!" }}
+                  {{ authStore.userDetail?.displayName || "Seja bem Vindo!" }}
                 </div>
                 <div
                   class="truncate transition-all duration-200 ease-in sm:text-base text-sm"
                 >
-                  {{ authStore.user?.mail }}
+                  {{ authStore.userDetail?.email }}
                 </div>
               </div>
             </transition>
@@ -115,15 +113,21 @@ onMounted(() => {
           v-if="!appStore.sideBar"
           :class="appStore.sideBar ? '' : 'bg-transparent duration-75'"
         >
-          <div class="w-8 h-[4px] rounded bg-gray-700 dark:bg-green-300"></div>
-          <div class="w-8 h-[4px] rounded bg-gray-700 dark:bg-green-300"></div>
-          <div class="w-8 h-[4px] rounded bg-gray-700 dark:bg-green-300"></div>
+          <div
+            class="w-8 h-[4px] rounded-sm bg-gray-700 dark:bg-green-300"
+          ></div>
+          <div
+            class="w-8 h-[4px] rounded-sm bg-gray-700 dark:bg-green-300"
+          ></div>
+          <div
+            class="w-8 h-[4px] rounded-sm bg-gray-700 dark:bg-green-300"
+          ></div>
         </div>
       </transition>
       <transition name="fade">
         <div class="w-full flex justify-center pt-6" v-if="appStore.sideBar">
           <div
-            class="w-10/12 h-[2px] rounded bg-neutral-400 dark:bg-gray-700"
+            class="w-10/12 h-[2px] rounded-sm bg-neutral-400 dark:bg-gray-700"
           />
         </div>
       </transition>
@@ -135,84 +139,18 @@ onMounted(() => {
           <div
             class="w-full flex flex-col pb-8 items-center justify-start space-y-1 sm:space-y-2 sm:px-4 px-2 h-full overflow-y-auto overflow-x-hidden"
           >
-            <template v-for="(options) in filterNavs" :key="options">
+            <template v-for="options in filterNavs" :key="options">
               <SideOption
-                :title="options.name"
+                :title="options.title"
                 :icon="options.icon"
                 :custom-class="
-                  currentRoute == options.name ? 'bg-neutral-300 dark:bg-gray-700' : ''
+                  currentRoute == options.name
+                    ? 'bg-neutral-300 dark:bg-green-300/80 hover:bg-neutral-400/70 hover:dark:bg-green-300/70'
+                    : ''
                 "
+                @click="changeRoute(options.route_name)"
               />
             </template>
-            <!-- <SideOption
-              icon="home"
-              title="Início"
-              @click="changeRoute('home')"
-            />
-            <SideOption
-              icon="inventory_2"
-              title="Area de Produtos"
-              @click="changeRoute('items-index')"
-            />
-            <SideOption
-              icon="handshake"
-              title="Parceiros de Negócios"
-              @click="changeRoute('partners-index')"
-            />
-            <SideOption
-              icon="shopping_cart"
-              title="Painel de Vendas"
-              @click="changeRoute('seller-index')"
-            />
-            <SideOption
-              icon="local_shipping"
-              title="Painel de Compras"
-              @click="changeRoute('buyer-index')"
-            />
-            <SideOption
-              icon="package_2"
-              title="Área de Estoque"
-              @click="changeRoute('warehouse-index')"
-            />
-            <SideOption
-              icon="monitoring"
-              title="Painel Financeiro"
-              @click="changeRoute('finance-index')"
-            />
-            <SideOption
-              icon="settings"
-              title="Ajustes"
-              @click="changeRoute('support-index')"
-            /> -->
-            <!-- <div
-              class="w-full flex items-center justify-start space-x-4 hover:bg-neutral-300 dark:hover:bg-gray-700 px-4 py-3 rounded cursor-pointer duration-200 ease-in-out transition"
-            >
-              <div
-                class="flex flex-row items-center space-x-2"
-              >
-                <span
-                  class="material-symbols-rounded text-gray-700 dark:text-green-300 mr-3"
-                  v-if="!isDark"
-                  >light_mode</span
-                >
-                <span
-                  class="material-symbols-rounded text-gray-700 dark:text-green-300 mr-3"
-                  v-else
-                  >dark_mode</span
-                >
-                <label class="inline-flex items-center cursor-pointer">
-                  <input
-                    type="checkbox"
-                    value=""
-                    class="sr-only peer"
-                    v-model="isDark"
-                  />
-                  <div
-                    class="relative w-11 h-6 bg-gray-600 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-neutral-300 dark:peer-focus:ring-gray-600 rounded-full peer dark:bg-gray-700 peer-checked:after:trangray-x-full rtl:peer-checked:after:-trangray-x-full peer-checked:after:border-green-300 after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-gray-100 dark:after:bg-gray-700 after:border-green-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-green-300"
-                  ></div>
-                </label>
-              </div>
-            </div> -->
           </div>
         </div>
       </transition>
@@ -222,8 +160,9 @@ onMounted(() => {
           v-if="appStore.sideBar"
         >
           <button
+            v-ripple
             @click="logoff"
-            class="bg-neutral-300 dark:bg-gray-700 text-gray-700 dark:text-gray-100 w-full p-2 m-2 rounded shadow font-semibold tracking-tighter text-lg hover:scale-102 duration-150 cursor-pointer"
+            class="bg-neutral-300 dark:bg-gray-700 text-gray-700 dark:text-gray-100 w-full p-2 m-2 rounded-sm shadow-sm font-semibold tracking-tighter text-lg hover:scale-102 duration-150 cursor-pointer"
           >
             <span>Sair</span>
           </button>
@@ -248,12 +187,14 @@ onMounted(() => {
 
 .fast-fade-enter-active,
 .fast-fade-leave-active {
-  transition: opacity 0.1s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  transition: opacity 0.1s cubic-bezier(0.455, 0.03, 0.515, 0.955),
+              transform 0.1s cubic-bezier(0.455, 0.03, 0.515, 0.955);
 }
 
 .fast-fade-enter-from,
 .fast-fade-leave-to {
   opacity: 0;
-}
+  transform: translateY(20px); /* Move o elemento 20px para a esquerda */
 
+}
 </style>

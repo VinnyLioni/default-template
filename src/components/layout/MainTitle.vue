@@ -5,7 +5,7 @@ const config = appConfig();
 </script>
 
 <template>
-  <header class="flex">
+  <div class="flex items-center justify-start fixed top-0 left-0 py-2 pl-2 sm:pl-16 z-10 default-colors shadow-neutral-100 dark:shadow-gray-900 shadow-lg w-full">
     <img
       :src="`/${config.logo}.svg`"
       loading="lazy"
@@ -26,5 +26,5 @@ const config = appConfig();
         >{{ config.appPhrase }}</span
       >
     </div>
-  </header>
+  </div>
 </template>

@@ -19,6 +19,9 @@ export const appConfig = () => {
   //variables
   const username = ref<String>("default user");
 
+  //type of project
+  const isTemplate = ref<Boolean>(true);
+
   return {
     appTitle,
     appDescriptor,
@@ -30,5 +33,6 @@ export const appConfig = () => {
     splash,
     background,
     username,
+    isTemplate,
   };
 };

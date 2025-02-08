@@ -4,9 +4,10 @@ import GoogleButton from "../components/auth/googleButton.vue";
 import LoginForm from "../components/auth/loginForm.vue";
 import { useRouter } from "vue-router";
 import { appConfig } from "../api/config";
+import { useAuthStore } from "../services/auth";
 // import { useAuthStore } from "../store/authStore";
 
-// const authStore = useAuthStore();
+const authStore = useAuthStore();
 
 // const appStore = useAppStore();
 
@@ -19,15 +20,17 @@ function go_home() {
 </script>
 
 <template>
-  <div class="default-colors w-full h-full p-2 row-center transition-colors">
+  <div
+    class="default-colors w-screen h-screen p-2 row-center transition-colors"
+  >
     <div
-      class="w-7/12 bg-gray-100 dark:bg-neutral-100 h-full relative hidden sm:flex p-10 rounded overflow-hidden shadow"
+      class="w-7/12 bg-gray-100 dark:bg-neutral-100 h-full relative hidden sm:flex p-10 rounded-sm overflow-hidden shadow-sm"
     >
       <img :src="`/${config.splash}.svg`" alt="" class="z-30" />
       <img
         :src="`/${config.background}.svg`"
         alt=""
-        class="z-10 absolute inset-0 w-full h-full object-cover -scale-x-[1]"
+        class="z-10 absolute inset-0 w-full h-full object-cover"
       />
     </div>
     <div
@@ -41,9 +44,9 @@ function go_home() {
           >
             <span>Bem vindo</span>
           </div>
-          <GoogleButton />
+          <GoogleButton @click="authStore.loginGoogle()"/>
           <div class="flex flex-row items-center space-x-2">
-            <div class="content-[''] w-32 h-[1px] bg-gray-500 rounded"></div>
+            <div class="content-[''] w-32 h-[1px] bg-gray-500 rounded-sm"></div>
             <span class="text-gray-500 text-xs">Ou</span>
             <div class="content-[''] w-32 h-[1px] bg-gray-500"></div>
           </div>

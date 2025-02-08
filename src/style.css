@@ -1,8 +1,19 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700;800;900&display=swap")
+layer(base);
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
 
 @variant dark (&:where(.dark, .dark *));
 
@@ -10,8 +21,16 @@
   font-family: "Montserrat", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  /* text-align: center; */
+  /* color: #2c3e50; */
+}
+
+.card {
+  @apply my-3 py-2 px-4 rounded-lg flex flex-col justify-center gap-4 shadow-md shadow-gray-300 dark:shadow-gray-900 bg-white dark:bg-gray-800;
+}
+
+.card-content {
+  @apply flex flex-col items-start gap-2;
 }
 
 .default-colors {
@@ -20,6 +39,10 @@
 
 .darker-colors {
   @apply bg-neutral-200 dark:bg-gray-950;
+}
+
+.default-shadow {
+  @apply shadow-md shadow-gray-200 dark:shadow-gray-950;
 }
 
 .row-center {
@@ -45,6 +68,7 @@
 
 :root {
   --drop-shadow-size: 2em;
+  @apply bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-neutral-100;
 }
 
 .shiny:hover {
@@ -55,14 +79,25 @@
   @apply w-1 h-1;
 }
 
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
 ::-webkit-scrollbar-thumb {
-  @apply bg-gray-100 dark:bg-gray-700;
+  @apply bg-gray-700;
 }
 
-::-webkit-scrollbar-horizontal {
-  @apply w-1;
+.router-slide-enter-active,
+.router-slide-leave-active {
+  transition: 300ms ease all;
 }
 
-::-webkit-scrollbar-thumb:horizontal {
-  @apply bg-gray-100 dark:bg-gray-700;
+.router-slide-enter-from,
+.router-slide-leave-to {
+  opacity: 0;
+  transform: translateX(-10px);
+}
+
+.animescroll {
+  @apply transition duration-300 ease-in-out;
 }

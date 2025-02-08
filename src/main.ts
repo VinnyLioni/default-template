@@ -1,51 +1,35 @@
 import { createApp } from "vue";
 import { createPinia } from "pinia";
+import { useAuthStore } from "./services/auth";
 import approuter from "./router";
 import "./style.css";
 import App from "./App.vue";
-import PrimeVue from "primevue/config";
-import ConfirmationService from "primevue/confirmationservice";
-import ToastService from "primevue/toastservice";
+import { createHead } from "@unhead/vue";
+import { registerPrimeVueComponents } from "./services/primevue-components";
 
-//@ts-ignore
-import Aura from "@primevue/themes/aura";
-import Button from "primevue/button";
-import DataTable from "primevue/datatable";
-import Column from "primevue/column";
-import "primeicons/primeicons.css";
-import { locale } from "./api/primevue-locale-dictionary";
+// Crie a isntância do usehead
+const head = createHead();
 
 // Crie a instância do Pinia
 const pinia: any = createPinia();
 const router: any = approuter;
 const app = createApp(App);
 
-// Use o PrimeVue com o tema
-app.use(PrimeVue, {
-  locale,
-  theme: {
-    preset: Aura,
-    options: {
-      prefix: "p",
-      darkModeSelector: ".dark",
-      cssLayer: false,
-    },
-  },
-});
+// Registre os componentes do PrimeVue
+registerPrimeVueComponents(app);
 
-// Registre de componentes
-app.component("Button", Button);
-app.component("DataTable", DataTable);
-app.component("Column", Column);
-
-app.use(ConfirmationService);
-app.use(ToastService);
+// Registre o head
+app.use(head);
 
 // Use o Pinia
 app.use(pinia);
 
 // Use o Router
 app.use(router);
+
+// Consuma a instância de auth
+const authStore = useAuthStore();
+authStore.initUser();
 
 // Monte o aplicativo
 app.mount("#app");

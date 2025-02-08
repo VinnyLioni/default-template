@@ -51,7 +51,7 @@ export const Gataticos = () => {
               "hover:bg-neutral-200/40 dark:hover:bg-slate-700/30":
                 (props?.sortable === "" || props.sortable) && !context?.sorted,
             },
-            "focus-visible:outline-none focus:rounded-lg focus-visible:outline-offset-0 focus-visible:ring focus-visible:ring-inset focus-visible:ring-slate-400/50 dark:focus-visible:ring-slate-300/50",
+            "focus-visible:outline-hidden focus:rounded-lg focus-visible:outline-offset-0 focus-visible:ring-3 focus-visible:ring-inset focus-visible:ring-slate-400/50 dark:focus-visible:ring-slate-300/50",
 
             // Transition
             {

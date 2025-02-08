@@ -24,6 +24,8 @@ export const locale = {
   reject: "Não",
   choose: "Selecione",
   upload: "Upload",
+  pending: "Pendente",
+  completed: "Concluído",
   cancel: "Cancelar",
   dayNames: [
     "Domingo",

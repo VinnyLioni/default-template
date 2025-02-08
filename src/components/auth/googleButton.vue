@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <button
+  <button v-ripple
     class="bg-gray-600 dark:bg-gray-100 w-11/12 sm:w-8/12 px-2 py-2 sm:py-1 2xl:py-2 flex flex-row items-center justify-center cursor-pointer hover:scale-105 duration-150 rounded-xs"
   >
     <span

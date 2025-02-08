@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import Clock from "../components/layout/Clock.vue";
-import { appConfig } from "../api/config";
-import { ref } from "vue";
-import { testData } from "../api/test";
+import { computed, ref } from "vue";
+import { useAuthStore } from "../services/auth";
 
-const config = appConfig();
-const test = testData()
+const authStore = useAuthStore();
 const currentDate = ref(new Date());
 
 const formattedDate = currentDate.value.toLocaleDateString("pt-BR", {
@@ -13,12 +11,16 @@ const formattedDate = currentDate.value.toLocaleDateString("pt-BR", {
   month: "long",
   year: "numeric",
 });
+
+const userDisplayName = computed(() => {
+  return authStore.userDetail?.displayName || 'Usuário';
+});
 </script>
 
 <template>
-  <div class="w-full h-full flex flex-col items-start px-3 my-2">
+  <div class="flex flex-col items-start px-3 my-2">
     <span class="-tracking-widest font-bold text-xl default-text"
-      >Olá, {{ config.username }}</span
+      >Olá, {{ userDisplayName }}</span
     >
     <div class="flex flex-row gap-1">
       <span
@@ -26,15 +28,6 @@ const formattedDate = currentDate.value.toLocaleDateString("pt-BR", {
         >{{ formattedDate }}</span
       >
       <Clock />
-    </div>
-    <div class="default-text h-full w-full row-center">
-      <Button label="Teste"/>
-      <DataTable :value="test.test" class="w-full m-4">
-        <Column field="id" header="Code"></Column>
-        <Column field="name" header="Name"></Column>
-        <Column field="category" header="Category"></Column>
-        <Column field="quantity" header="Quantity"></Column>
-      </DataTable>
     </div>
   </div>
 </template>
