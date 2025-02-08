@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import Clock from "../components/layout/Clock.vue";
-import { appConfig } from "../api/config";
-import { ref } from "vue";
-import { useAppController } from "../controllers/appController";
+import { computed, ref } from "vue";
+import { useAuthStore } from "../services/auth";
 
-const config = appConfig();
-const appController = useAppController();
+const authStore = useAuthStore();
 const currentDate = ref(new Date());
 
 const formattedDate = currentDate.value.toLocaleDateString("pt-BR", {
@@ -13,12 +11,16 @@ const formattedDate = currentDate.value.toLocaleDateString("pt-BR", {
   month: "long",
   year: "numeric",
 });
+
+const userDisplayName = computed(() => {
+  return authStore.userDetail?.displayName || 'Usuário';
+});
 </script>
 
 <template>
   <div class="flex flex-col items-start px-3 my-2">
     <span class="-tracking-widest font-bold text-xl default-text"
-      >Olá, {{ config.username }}</span
+      >Olá, {{ userDisplayName }}</span
     >
     <div class="flex flex-row gap-1">
       <span
@@ -26,15 +28,6 @@ const formattedDate = currentDate.value.toLocaleDateString("pt-BR", {
         >{{ formattedDate }}</span
       >
       <Clock />
-    </div>
-    <div class="default-text w-full flex flex-col gap-2">
-      <Button label="Teste" />
-      <SelectButton
-        v-model="appController.tableSize"
-        :options="appController.sizeOptions"
-        option-label="label"
-        data-key="label"
-      />
     </div>
   </div>
 </template>

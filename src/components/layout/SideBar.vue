@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useRoute, useRouter } from "vue-router";
 import { useAppStore } from "../../store/appStore";
-import { useAuthStore } from "../../store/authStore";
+import { useAuthStore } from "../../services/auth";
 import SideOption from "./SideOption.vue";
 import { useDark, useToggle } from "@vueuse/core";
 import { computed, onMounted, ref } from "vue";
@@ -20,7 +20,7 @@ const changeRoute = (payload: string) => {
 };
 
 const logoff = async () => {
-  router.push({ name: "login" });
+  authStore.logout();
 };
 
 const optionsNav = ref<any>([]);
@@ -74,7 +74,7 @@ onMounted(() => {
             class="flex flex-row justify-start items-center space-x-2 w-full"
           >
             <img
-              :src="authStore.user?.photo || '/gataticos.webp'"
+              :src="authStore.userDetail?.photoUrl || '/gataticos.webp'"
               alt=""
               class="rounded-full transition-all my-4 duration-200 ml-2 border-2 border-gray-700 dark:border-green-300 w-14 h-14"
               :class="appStore.sideBar ? 'sm:w-16 sm:h-14' : 'sm:w-10 sm:h-10'"
@@ -87,12 +87,12 @@ onMounted(() => {
                 <div
                   class="truncate transition-all sm:text-2xl duration-200 ease-in text-xl border-gray-700 dark:text-green-300 -tracking-widest"
                 >
-                  {{ authStore.user?.name || "Seja bem Vindo!" }}
+                  {{ authStore.userDetail?.displayName || "Seja bem Vindo!" }}
                 </div>
                 <div
                   class="truncate transition-all duration-200 ease-in sm:text-base text-sm"
                 >
-                  {{ authStore.user?.mail }}
+                  {{ authStore.userDetail?.email }}
                 </div>
               </div>
             </transition>
@@ -160,6 +160,7 @@ onMounted(() => {
           v-if="appStore.sideBar"
         >
           <button
+            v-ripple
             @click="logoff"
             class="bg-neutral-300 dark:bg-gray-700 text-gray-700 dark:text-gray-100 w-full p-2 m-2 rounded-sm shadow-sm font-semibold tracking-tighter text-lg hover:scale-102 duration-150 cursor-pointer"
           >

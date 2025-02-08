@@ -12,6 +12,7 @@ import GataTheme from "../assets/theme";
 // form
 import Checkbox from "primevue/checkbox";
 import DatePicker from "primevue/datepicker";
+import Editor from "primevue/editor";
 import FloatLabel from "primevue/floatlabel";
 import IconField from "primevue/iconfield";
 import InputGroup from "primevue/inputgroup";
@@ -112,6 +113,7 @@ export function registerPrimeVueComponents(app: App) {
   //formm
   app.component("Checkbox", Checkbox);
   app.component("DatePicker", DatePicker);
+  app.component("Editor", Editor);
   app.component("FloatLabel", FloatLabel);
   app.component("InputText", InputText);
   app.component("IconField", IconField);

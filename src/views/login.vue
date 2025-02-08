@@ -4,9 +4,10 @@ import GoogleButton from "../components/auth/googleButton.vue";
 import LoginForm from "../components/auth/loginForm.vue";
 import { useRouter } from "vue-router";
 import { appConfig } from "../api/config";
+import { useAuthStore } from "../services/auth";
 // import { useAuthStore } from "../store/authStore";
 
-// const authStore = useAuthStore();
+const authStore = useAuthStore();
 
 // const appStore = useAppStore();
 
@@ -19,7 +20,9 @@ function go_home() {
 </script>
 
 <template>
-  <div class="default-colors w-screen h-screen p-2 row-center transition-colors">
+  <div
+    class="default-colors w-screen h-screen p-2 row-center transition-colors"
+  >
     <div
       class="w-7/12 bg-gray-100 dark:bg-neutral-100 h-full relative hidden sm:flex p-10 rounded-sm overflow-hidden shadow-sm"
     >
@@ -41,7 +44,7 @@ function go_home() {
           >
             <span>Bem vindo</span>
           </div>
-          <GoogleButton />
+          <GoogleButton @click="authStore.loginGoogle()"/>
           <div class="flex flex-row items-center space-x-2">
             <div class="content-[''] w-32 h-[1px] bg-gray-500 rounded-sm"></div>
             <span class="text-gray-500 text-xs">Ou</span>

@@ -4,6 +4,7 @@ import {
   type RouteRecordRaw,
 } from "vue-router";
 import { appConfig } from "../api/config";
+import { useAuthStore } from "../services/auth";
 
 const config = appConfig();
 
@@ -53,6 +54,14 @@ const router = createRouter({
   scrollBehavior() {
     return { top: 0 };
   },
+});
+
+router.beforeEach(() => {
+  const auth = useAuthStore();
+  if (auth.userDetail.uid !== null) {
+  } else {
+    return { name: "login" };
+  }
 });
 
 export default router;

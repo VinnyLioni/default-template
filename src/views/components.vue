@@ -742,6 +742,14 @@ onMounted(() => {
             />
           </div>
         </div>
+        <div class="w-full">
+          <div class="card">
+            <div class="card-content">
+              <span class="font-semibold tracking-tight">Editor</span>
+              <Editor editorStyle="height: 320px" class="w-full" />
+            </div>
+          </div>
+        </div>
         <div class="card">
           <div class="card-content">
             <span class="font-semibold tracking-tight">FloatLabel</span>
