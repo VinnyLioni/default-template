@@ -44,7 +44,7 @@ function go_home() {
           >
             <span>Bem vindo</span>
           </div>
-          <GoogleButton @click="authStore.loginGoogle()"/>
+          <GoogleButton @click="authStore.login_google()"/>
           <div class="flex flex-row items-center space-x-2">
             <div class="content-[''] w-32 h-[1px] bg-gray-500 rounded-sm"></div>
             <span class="text-gray-500 text-xs">Ou</span>

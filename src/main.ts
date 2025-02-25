@@ -29,7 +29,7 @@ app.use(router);
 
 // Consuma a instância de auth
 const authStore = useAuthStore();
-authStore.initUser();
+authStore.init_user();
 
 // Monte o aplicativo
 app.mount("#app");
