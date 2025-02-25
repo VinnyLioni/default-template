@@ -22,6 +22,59 @@ export const appConfig = () => {
   //type of project
   const isTemplate = ref<Boolean>(true);
 
+  //tables/collections
+  const defaultCollections = [
+    {
+      collectionName: "items",
+      data: { name: "Padrão", family: 1, obs: "Item Padrão" },
+    },
+  ];
+
+  //sequences
+  const sequences = ["items", "payment", "orders", "purchases", "receipts"];
+
+  //constraints
+  const constraints = ["items", "payment", "orders", "purchases", "receitps"];
+
+  //parameters of application
+  const parameters = [
+    {
+      name: "hourcost",
+      meta: { label: "Definir Custo por Hora na produção", value: 1.15 },
+    },
+    {
+      name: "matcost",
+      meta: {
+        label: "Definir Custo por Grama de material na produção",
+        value: 0.13,
+      },
+    },
+    {
+      name: "packcost",
+      meta: {
+        label: "Definir Custo da Embalagem utilizada ao enviar pedido",
+        value: 2.0,
+      },
+    },
+  ];
+
+  //business data
+  const business = [
+    {
+      name: "filial",
+      meta: {
+        name: "Padrão",
+        fantasy: "Padrão",
+        phone: "9999999999",
+        legal: false,
+        cnpjcpf: "00000000000000",
+        adress: "Rua Padrao",
+        number: "00",
+        mail: "test@test.com",
+      },
+    },
+  ];
+
   return {
     appTitle,
     appDescriptor,
@@ -34,5 +87,10 @@ export const appConfig = () => {
     background,
     username,
     isTemplate,
+    defaultCollections,
+    sequences,
+    parameters,
+    business,
+    constraints,
   };
 };
